@@ -47,27 +47,21 @@
                    <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
                        [<span class='inner'>&#x2212;</span>]
                    </a>
-               </span><a id='src-0' class='srclink' href='../src/css_color_parser/src/lib.rs.html#25-98' title='goto source code'>[src]</a></span></h1>
-<div class='docblock'><p>Easy-to-use Rust parser for CSS3 color strings.</p>
+               </span><a id='src-0' class='srclink' href='../src/css_color_parser/lib.rs.html#25-93' title='goto source code'>[src]</a></span></h1>
+<div class='docblock'><p>Easy-to-use Rust parser for CSS3 color strings.<br>
+Lightweight (Doesn&#39;t have any dependencies besides std lib).<br>
+Reliable (Provides tests, handles all errors to avoid panic!s).<br></p>
 
-<p>Handles all errors to avoid panic!s.</p>
+<p>Not 100% spec compliant in the name of convenience (see examples below):<br>
+ * allows for extra whitespaces<br>
+ * allows for floats where standard allows percentages only<br></p>
 
-<p>Not 100% spec compliant in the name of convenience (see examples below):</p>
+<p>CSS3 Color spec: <br>
+<a href="http://www.w3.org/TR/css3-color/">http://www.w3.org/TR/css3-color/</a><br>
+<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/color">https://developer.mozilla.org/en-US/docs/Web/CSS/color</a><br></p>
 
-<ul>
-<li><p>allows for extra whitespaces</p></li>
-<li><p>allows for floats where standard allows percentages only</p></li>
-</ul>
-
-<p>CSS3 Color spec: </p>
-
-<p><a href="http://www.w3.org/TR/css3-color/">http://www.w3.org/TR/css3-color/</a></p>
-
-<p><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/color">https://developer.mozilla.org/en-US/docs/Web/CSS/color</a></p>
-
-<p>Repository:</p>
-
-<p><a href="https://github.com/7thSigil/css-color-parser-rs.git">https://github.com/7thSigil/css-color-parser-rs.git</a></p>
+<p>Repository:<br>
+<a href="https://github.com/7thSigil/css-color-parser-rs.git">https://github.com/7thSigil/css-color-parser-rs.git</a></p>
 
 <h1 id='examples' class='section-header'><a href='#examples'>Examples</a></h1>
 <pre class='rust rust-example-rendered'>
