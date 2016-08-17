@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="rustdoc">
+    <meta name="description" content="API documentation for the Rust `css_color_parser` crate.">
+    <meta name="keywords" content="rust, rustlang, rust-lang, css_color_parser">
+
+    <title>css_color_parser - Rust</title>
+
+    <link rel="stylesheet" type="text/css" href="../rustdoc.css">
+    <link rel="stylesheet" type="text/css" href="../main.css">
+    
+
+    
+    
+</head>
+<body class="rustdoc">
+    <!--[if lte IE 8]>
+    <div class="warning">
+        This old browser is unsupported and will most likely display funky
+        things.
+    </div>
+    <![endif]-->
+
+    
+
+    <nav class="sidebar">
+        
+        <p class='location'></p><script>window.sidebarCurrent = {name: 'css_color_parser', ty: 'mod', relpath: '../'};</script>
+    </nav>
+
+    <nav class="sub">
+        <form class="search-form js-only">
+            <div class="search-container">
+                <input class="search-input" name="search"
+                       autocomplete="off"
+                       placeholder="Click or press ‘S’ to search, ‘?’ for more options…"
+                       type="search">
+            </div>
+        </form>
+    </nav>
+
+    <section id='main' class="content mod">
+<h1 class='fqn'><span class='in-band'>Crate <a class='mod' href=''>css_color_parser</a></span><span class='out-of-band'><span id='render-detail'>
+                   <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
+                       [<span class='inner'>&#x2212;</span>]
+                   </a>
+               </span><a id='src-0' class='srclink' href='../src/css_color_parser/src/lib.rs.html#25-98' title='goto source code'>[src]</a></span></h1>
+<div class='docblock'><p>Easy-to-use Rust parser for CSS3 color strings.</p>
+
+<p>Handles all errors to avoid panic!s.</p>
+
+<p>Not 100% spec compliant in the name of convenience (see examples below):</p>
+
+<ul>
+<li><p>allows for extra whitespaces</p></li>
+<li><p>allows for floats where standard allows percentages only</p></li>
+</ul>
+
+<p>CSS3 Color spec: </p>
+
+<p><a href="http://www.w3.org/TR/css3-color/">http://www.w3.org/TR/css3-color/</a></p>
+
+<p><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/color">https://developer.mozilla.org/en-US/docs/Web/CSS/color</a></p>
+
+<p>Repository:</p>
+
+<p><a href="https://github.com/7thSigil/css-color-parser-rs.git">https://github.com/7thSigil/css-color-parser-rs.git</a></p>
+
+<h1 id='examples' class='section-header'><a href='#examples'>Examples</a></h1>
+<pre class='rust rust-example-rendered'>
+<span class='kw'>use</span> <span class='ident'>css_color_parser</span>::<span class='ident'>Color</span> <span class='kw'>as</span> <span class='ident'>CssColor</span>;
+
+<span class='kw'>let</span> <span class='ident'>transparent_black</span> <span class='op'>=</span> <span class='ident'>CssColor</span> { <span class='ident'>r</span>: <span class='number'>0</span>, <span class='ident'>g</span>: <span class='number'>0</span>, <span class='ident'>b</span>: <span class='number'>0</span>, <span class='ident'>a</span>: <span class='number'>1.0</span> };
+
+<span class='macro'>println</span><span class='macro'>!</span>(<span class='string'>&quot;{:?}&quot;</span>, <span class='string'>&quot; rgba (255, 128, 12, 0.5)&quot;</span>.<span class='ident'>parse</span>::<span class='op'>&lt;</span><span class='ident'>CssColor</span><span class='op'>&gt;</span>()
+        .<span class='ident'>unwrap_or</span>(<span class='ident'>transparent_black</span>));
+<span class='comment'>//Color { r: 255, g: 128, b: 12, a: 0.5 }</span>
+
+<span class='macro'>println</span><span class='macro'>!</span>(<span class='string'>&quot;{:?}&quot;</span>, <span class='string'>&quot;#fff&quot;</span>.<span class='ident'>parse</span>::<span class='op'>&lt;</span><span class='ident'>CssColor</span><span class='op'>&gt;</span>()
+    .<span class='ident'>unwrap_or</span>(<span class='ident'>transparent_black</span>));
+<span class='comment'>//Color { r: 255, g: 255, b: 255, a: 1 }</span>
+
+<span class='macro'>println</span><span class='macro'>!</span>(<span class='string'>&quot;{:?}&quot;</span>, <span class='string'>&quot;#ff0011&quot;</span>.<span class='ident'>parse</span>::<span class='op'>&lt;</span><span class='ident'>CssColor</span><span class='op'>&gt;</span>()
+    .<span class='ident'>unwrap_or</span>(<span class='ident'>transparent_black</span>));
+<span class='comment'>//Color { r: 255, g: 0, b: 17, a: 1 }</span>
+
+<span class='macro'>println</span><span class='macro'>!</span>(<span class='string'>&quot;{:?}&quot;</span>, <span class='string'>&quot;slateblue&quot;</span>.<span class='ident'>parse</span>::<span class='op'>&lt;</span><span class='ident'>CssColor</span><span class='op'>&gt;</span>()
+    .<span class='ident'>unwrap_or</span>(<span class='ident'>transparent_black</span>));
+<span class='comment'>//Color { r: 106, g: 90, b: 205, a: 1 }</span>
+
+<span class='macro'>println</span><span class='macro'>!</span>(<span class='string'>&quot;{:?}&quot;</span>, <span class='string'>&quot;blah&quot;</span>.<span class='ident'>parse</span>::<span class='op'>&lt;</span><span class='ident'>CssColor</span><span class='op'>&gt;</span>()
+    .<span class='ident'>unwrap_or</span>(<span class='ident'>transparent_black</span>));
+<span class='comment'>//Color { r: 0, g: 0, b: 0, a: 0 } - ColorParseError</span>
+
+<span class='macro'>println</span><span class='macro'>!</span>(<span class='string'>&quot;{:?}&quot;</span>, <span class='string'>&quot;ffffff&quot;</span>.<span class='ident'>parse</span>::<span class='op'>&lt;</span><span class='ident'>CssColor</span><span class='op'>&gt;</span>()
+    .<span class='ident'>unwrap_or</span>(<span class='ident'>transparent_black</span>));
+<span class='comment'>//Color { r: 0, g: 0, b: 0, a: 0 } - ColorParseError</span>
+
+<span class='macro'>println</span><span class='macro'>!</span>(<span class='string'>&quot;{:?}&quot;</span>, <span class='string'>&quot;hsla(900, 15%, 90%, 0.5)&quot;</span>.<span class='ident'>parse</span>::<span class='op'>&lt;</span><span class='ident'>CssColor</span><span class='op'>&gt;</span>()
+    .<span class='ident'>unwrap_or</span>(<span class='ident'>transparent_black</span>));
+<span class='comment'>//Color { r: 226, g: 233, b: 233, a: 0.5 }</span>
+
+<span class='macro'>println</span><span class='macro'>!</span>(<span class='string'>&quot;{:?}&quot;</span>, <span class='string'>&quot;hsla(900, 15%, 90%)&quot;</span>.<span class='ident'>parse</span>::<span class='op'>&lt;</span><span class='ident'>CssColor</span><span class='op'>&gt;</span>()
+    .<span class='ident'>unwrap_or</span>(<span class='ident'>transparent_black</span>));
+<span class='comment'>//Color { r: 0, g: 0, b: 0, a: 0 } - ColorParseError</span>
+<span class='macro'>println</span><span class='macro'>!</span>(<span class='string'>&quot;{:?}&quot;</span>, <span class='string'>&quot;hsl(900, 15%, 90%)&quot;</span>.<span class='ident'>parse</span>::<span class='op'>&lt;</span><span class='ident'>CssColor</span><span class='op'>&gt;</span>()
+    .<span class='ident'>unwrap_or</span>(<span class='ident'>transparent_black</span>));
+<span class='comment'>//Color { r: 226, g: 233, b: 233, a: 1 }</span>
+
+<span class='comment'>// NOTE: not spec compliant.</span>
+<span class='macro'>println</span><span class='macro'>!</span>(<span class='string'>&quot;{:?}&quot;</span>, <span class='string'>&quot;hsl(900, 0.15, 90%)&quot;</span>.<span class='ident'>parse</span>::<span class='op'>&lt;</span><span class='ident'>CssColor</span><span class='op'>&gt;</span>()
+   .<span class='ident'>unwrap_or</span>(<span class='ident'>transparent_black</span>)); 
+<span class='comment'>//Color { r: 226, g: 233, b: 233, a: 1 }</span></pre>
+</div><h2 id='structs' class='section-header'><a href="#structs">Structs</a></h2>
+<table>
+                       <tr class=' module-item'>
+                           <td><a class='struct' href='struct.Color.html'
+                                  title='css_color_parser::Color'>Color</a></td>
+                           <td class='docblock short'>
+                                <p>Color in rgba format,
+where {red,green,blue} in 0..255, 
+alpha in 0.0..1.0</p>
+                           </td>
+                       </tr></table><h2 id='statics' class='section-header'><a href="#statics">Statics</a></h2>
+<table>
+                       <tr class=' module-item'>
+                           <td><a class='static' href='static.NAMED_COLORS.html'
+                                  title='css_color_parser::NAMED_COLORS'>NAMED_COLORS</a></td>
+                           <td class='docblock short'>
+                                <p>List of CSS3 named colors
+<a href="http://www.w3.org/TR/css3-color/">http://www.w3.org/TR/css3-color/</a></p>
+                           </td>
+                       </tr></table></section>
+    <section id='search' class="content hidden"></section>
+
+    <section class="footer"></section>
+
+    <aside id="help" class="hidden">
+        <div>
+            <h1 class="hidden">Help</h1>
+
+            <div class="shortcuts">
+                <h2>Keyboard Shortcuts</h2>
+
+                <dl>
+                    <dt>?</dt>
+                    <dd>Show this help dialog</dd>
+                    <dt>S</dt>
+                    <dd>Focus the search field</dd>
+                    <dt>&larrb;</dt>
+                    <dd>Move up in search results</dd>
+                    <dt>&rarrb;</dt>
+                    <dd>Move down in search results</dd>
+                    <dt>&#9166;</dt>
+                    <dd>Go to active search result</dd>
+                    <dt>+</dt>
+                    <dd>Collapse/expand all sections</dd>
+                </dl>
+            </div>
+
+            <div class="infos">
+                <h2>Search Tricks</h2>
+
+                <p>
+                    Prefix searches with a type followed by a colon (e.g.
+                    <code>fn:</code>) to restrict the search to a given type.
+                </p>
+
+                <p>
+                    Accepted types are: <code>fn</code>, <code>mod</code>,
+                    <code>struct</code>, <code>enum</code>,
+                    <code>trait</code>, <code>type</code>, <code>macro</code>,
+                    and <code>const</code>.
+                </p>
+
+                <p>
+                    Search functions by type signature (e.g.
+                    <code>vec -> usize</code> or <code>* -> vec</code>)
+                </p>
+            </div>
+        </div>
+    </aside>
+
+    
+
+    <script>
+        window.rootPath = "../";
+        window.currentCrate = "css_color_parser";
+        window.playgroundUrl = "";
+    </script>
+    <script src="../jquery.js"></script>
+    <script src="../main.js"></script>
+    
+    <script defer src="../search-index.js"></script>
+</body>
+</html>
