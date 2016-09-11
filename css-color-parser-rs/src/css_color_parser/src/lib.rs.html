@@ -138,6 +138,9 @@
 <span id="94">94</span>
 <span id="95">95</span>
 <span id="96">96</span>
+<span id="97">97</span>
+<span id="98">98</span>
+<span id="99">99</span>
 </pre><pre class='rust '>
 <span class='comment'>// (c) Dean McNamee &lt;dean@gmail.com&gt;, 2012.</span>
 <span class='comment'>// (c) Rust port by Katkov Oleksandr &lt;alexx.katkoff@gmail.com&gt;, 2016.</span>
@@ -164,7 +167,7 @@
 <span class='comment'>// IN THE SOFTWARE.</span>
 
 <span class='doccomment'>//! Easy-to-use Rust parser for CSS3 color strings.&lt;br&gt;</span>
-<span class='doccomment'>//! Lightweight (Doesn&#39;t have any dependencies besides std lib).&lt;br&gt;</span>
+<span class='doccomment'>//! Lightweight.&lt;br&gt;</span>
 <span class='doccomment'>//! Reliable (Provides tests, handles all errors to avoid panic!s).&lt;br&gt;</span>
 <span class='doccomment'>//!</span>
 <span class='doccomment'>//! Not 100% spec compliant in the name of convenience (see examples below):&lt;br&gt;</span>
@@ -224,9 +227,12 @@
 <span class='doccomment'>//!</span>
 <span class='doccomment'>//!    	// NOTE: not spec compliant.</span>
 <span class='doccomment'>//!    	println!(&quot;{:?}&quot;, &quot;hsl(900, 0.15, 90%)&quot;.parse::&lt;CssColor&gt;()</span>
-<span class='doccomment'>//!        .unwrap_or(transparent_black)); </span>
+<span class='doccomment'>//!        .unwrap_or(transparent_black));</span>
 <span class='doccomment'>//!     //Color { r: 226, g: 233, b: 233, a: 1 }</span>
 <span class='doccomment'>//!</span>
+
+<span class='attribute'>#[<span class='ident'>macro_use</span>]</span>
+<span class='kw'>extern</span> <span class='kw'>crate</span> <span class='ident'>lazy_static</span>;
 
 <span class='kw'>pub</span> <span class='kw'>use</span> <span class='self'>self</span>::<span class='ident'>color</span>::<span class='ident'>color</span>::<span class='ident'>Color</span>;
 <span class='kw'>pub</span> <span class='kw'>use</span> <span class='self'>self</span>::<span class='ident'>color</span>::<span class='ident'>named_colors</span>::<span class='ident'>NAMED_COLORS</span>;
@@ -234,7 +240,8 @@
 <span class='kw'>mod</span> <span class='ident'>color</span>;
 
 <span class='attribute'>#[<span class='ident'>cfg</span>(<span class='ident'>test</span>)]</span>
-<span class='kw'>mod</span> <span class='ident'>tests</span>;</pre>
+<span class='kw'>mod</span> <span class='ident'>tests</span>;
+</pre>
 </section>
     <section id='search' class="content hidden"></section>
 

@@ -47,9 +47,9 @@
                    <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
                        [<span class='inner'>&#x2212;</span>]
                    </a>
-               </span><a id='src-0' class='srclink' href='../src/css_color_parser/src/lib.rs.html#25-96' title='goto source code'>[src]</a></span></h1>
+               </span><a id='src-0' class='srclink' href='../src/css_color_parser/src/lib.rs.html#25-99' title='goto source code'>[src]</a></span></h1>
 <div class='docblock'><p>Easy-to-use Rust parser for CSS3 color strings.<br>
-Lightweight (Doesn&#39;t have any dependencies besides std lib).<br>
+Lightweight.<br>
 Reliable (Provides tests, handles all errors to avoid panic!s).<br></p>
 
 <p>Not 100% spec compliant in the name of convenience (see examples below):<br>
@@ -109,7 +109,7 @@ Reliable (Provides tests, handles all errors to avoid panic!s).<br></p>
 
 <span class='comment'>// NOTE: not spec compliant.</span>
 <span class='macro'>println</span><span class='macro'>!</span>(<span class='string'>&quot;{:?}&quot;</span>, <span class='string'>&quot;hsl(900, 0.15, 90%)&quot;</span>.<span class='ident'>parse</span>::<span class='op'>&lt;</span><span class='ident'>CssColor</span><span class='op'>&gt;</span>()
-   .<span class='ident'>unwrap_or</span>(<span class='ident'>transparent_black</span>)); 
+   .<span class='ident'>unwrap_or</span>(<span class='ident'>transparent_black</span>));
 <span class='comment'>//Color { r: 226, g: 233, b: 233, a: 1 }</span></pre>
 </div><h2 id='structs' class='section-header'><a href="#structs">Structs</a></h2>
 <table>
@@ -118,17 +118,15 @@ Reliable (Provides tests, handles all errors to avoid panic!s).<br></p>
                                   title='css_color_parser::Color'>Color</a></td>
                            <td class='docblock short'>
                                 <p>Color in rgba format,
-where {red,green,blue} in 0..255, 
+where {red,green,blue} in 0..255,
 alpha in 0.0..1.0</p>
                            </td>
-                       </tr></table><h2 id='statics' class='section-header'><a href="#statics">Statics</a></h2>
-<table>
+                       </tr>
                        <tr class=' module-item'>
-                           <td><a class='static' href='static.NAMED_COLORS.html'
+                           <td><a class='struct' href='struct.NAMED_COLORS.html'
                                   title='css_color_parser::NAMED_COLORS'>NAMED_COLORS</a></td>
                            <td class='docblock short'>
-                                <p>List of CSS3 named colors
-<a href="http://www.w3.org/TR/css3-color/">http://www.w3.org/TR/css3-color/</a></p>
+                                <p>List of CSS3 named colors from <a href="http://www.w3.org/TR/css3-color">http://www.w3.org/TR/css3-color</a>.</p>
                            </td>
                        </tr></table></section>
     <section id='search' class="content hidden"></section>

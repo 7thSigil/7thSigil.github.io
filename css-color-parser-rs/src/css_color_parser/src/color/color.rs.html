@@ -426,7 +426,6 @@
 <span id="382">382</span>
 <span id="383">383</span>
 <span id="384">384</span>
-<span id="385">385</span>
 </pre><pre class='rust '>
 <span class='comment'>// (c) Dean McNamee &lt;dean@gmail.com&gt;, 2012.</span>
 <span class='comment'>// (c) Rust port by Katkov Oleksandr &lt;alexx.katkoff@gmail.com&gt;, 2016.</span>
@@ -460,24 +459,29 @@
 
 <span class='kw'>use</span> <span class='ident'>color</span>::<span class='ident'>named_colors</span>::<span class='ident'>NAMED_COLORS</span>;
 
-<span class='doccomment'>///Color in rgba format, </span>
-<span class='doccomment'>///where {red,green,blue} in 0..255, </span>
-<span class='doccomment'>///alpha in 0.0..1.0</span>
+<span class='doccomment'>/// Color in rgba format,</span>
+<span class='doccomment'>/// where {red,green,blue} in 0..255,</span>
+<span class='doccomment'>/// alpha in 0.0..1.0</span>
 <span class='attribute'>#[<span class='ident'>derive</span>(<span class='ident'>Copy</span>, <span class='ident'>Clone</span>, <span class='ident'>Debug</span>, <span class='ident'>PartialEq</span>)]</span>
 <span class='kw'>pub</span> <span class='kw'>struct</span> <span class='ident'>Color</span> {
-	<span class='doccomment'>///red channel, ranges from 0 to 255</span>
-	<span class='kw'>pub</span> <span class='ident'>r</span> : <span class='ident'>u8</span>,
-	<span class='doccomment'>///green channel, ranges from 0 to 255</span>
-	<span class='kw'>pub</span> <span class='ident'>g</span> : <span class='ident'>u8</span>,
-	<span class='doccomment'>///blue channel, ranges from 0 to 255</span>
-	<span class='kw'>pub</span> <span class='ident'>b</span> : <span class='ident'>u8</span>,
-	<span class='doccomment'>///alpha channel, ranges from 0.0 to 1.0</span>
-	<span class='kw'>pub</span> <span class='ident'>a</span> : <span class='ident'>f32</span>
+    <span class='doccomment'>/// red channel, ranges from 0 to 255</span>
+    <span class='kw'>pub</span> <span class='ident'>r</span>: <span class='ident'>u8</span>,
+    <span class='doccomment'>/// green channel, ranges from 0 to 255</span>
+    <span class='kw'>pub</span> <span class='ident'>g</span>: <span class='ident'>u8</span>,
+    <span class='doccomment'>/// blue channel, ranges from 0 to 255</span>
+    <span class='kw'>pub</span> <span class='ident'>b</span>: <span class='ident'>u8</span>,
+    <span class='doccomment'>/// alpha channel, ranges from 0.0 to 1.0</span>
+    <span class='kw'>pub</span> <span class='ident'>a</span>: <span class='ident'>f32</span>,
 }
 
 <span class='kw'>impl</span> <span class='ident'>fmt</span>::<span class='ident'>Display</span> <span class='kw'>for</span> <span class='ident'>Color</span> {
     <span class='kw'>fn</span> <span class='ident'>fmt</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>, <span class='ident'>f</span>: <span class='kw-2'>&amp;</span><span class='kw-2'>mut</span> <span class='ident'>fmt</span>::<span class='ident'>Formatter</span>) <span class='op'>-&gt;</span> <span class='ident'>fmt</span>::<span class='prelude-ty'>Result</span> {
-    	<span class='macro'>write</span><span class='macro'>!</span>(<span class='ident'>f</span>, <span class='string'>&quot;Color(r: {}, g: {}, b: {}, a: {})&quot;</span>, <span class='self'>self</span>.<span class='ident'>r</span>, <span class='self'>self</span>.<span class='ident'>g</span>, <span class='self'>self</span>.<span class='ident'>b</span>, <span class='self'>self</span>.<span class='ident'>a</span>)
+        <span class='macro'>write</span><span class='macro'>!</span>(<span class='ident'>f</span>,
+               <span class='string'>&quot;Color(r: {}, g: {}, b: {}, a: {})&quot;</span>,
+               <span class='self'>self</span>.<span class='ident'>r</span>,
+               <span class='self'>self</span>.<span class='ident'>g</span>,
+               <span class='self'>self</span>.<span class='ident'>b</span>,
+               <span class='self'>self</span>.<span class='ident'>a</span>)
     }
 }
 
@@ -485,17 +489,17 @@
 <span class='kw'>pub</span> <span class='kw'>struct</span> <span class='ident'>ColorParseError</span>;
 
 <span class='kw'>impl</span> <span class='ident'>From</span><span class='op'>&lt;</span><span class='ident'>num</span>::<span class='ident'>ParseIntError</span><span class='op'>&gt;</span> <span class='kw'>for</span> <span class='ident'>ColorParseError</span> {
-	<span class='attribute'>#[<span class='ident'>allow</span>(<span class='ident'>unused_variables</span>)]</span>
-	<span class='kw'>fn</span> <span class='ident'>from</span>(<span class='ident'>err</span>: <span class='ident'>num</span>::<span class='ident'>ParseIntError</span>) <span class='op'>-&gt;</span> <span class='ident'>ColorParseError</span> {
-		<span class='kw'>return</span> <span class='ident'>ColorParseError</span>;
-	}
+    <span class='attribute'>#[<span class='ident'>allow</span>(<span class='ident'>unused_variables</span>)]</span>
+    <span class='kw'>fn</span> <span class='ident'>from</span>(<span class='ident'>err</span>: <span class='ident'>num</span>::<span class='ident'>ParseIntError</span>) <span class='op'>-&gt;</span> <span class='ident'>ColorParseError</span> {
+        <span class='kw'>return</span> <span class='ident'>ColorParseError</span>;
+    }
 }
 
 <span class='kw'>impl</span> <span class='ident'>From</span><span class='op'>&lt;</span><span class='ident'>num</span>::<span class='ident'>ParseFloatError</span><span class='op'>&gt;</span> <span class='kw'>for</span> <span class='ident'>ColorParseError</span> {
-	<span class='attribute'>#[<span class='ident'>allow</span>(<span class='ident'>unused_variables</span>)]</span>
-	<span class='kw'>fn</span> <span class='ident'>from</span>(<span class='ident'>err</span>: <span class='ident'>num</span>::<span class='ident'>ParseFloatError</span>) <span class='op'>-&gt;</span> <span class='ident'>ColorParseError</span> {
-		<span class='kw'>return</span> <span class='ident'>ColorParseError</span>;
-	}
+    <span class='attribute'>#[<span class='ident'>allow</span>(<span class='ident'>unused_variables</span>)]</span>
+    <span class='kw'>fn</span> <span class='ident'>from</span>(<span class='ident'>err</span>: <span class='ident'>num</span>::<span class='ident'>ParseFloatError</span>) <span class='op'>-&gt;</span> <span class='ident'>ColorParseError</span> {
+        <span class='kw'>return</span> <span class='ident'>ColorParseError</span>;
+    }
 }
 
 <span class='kw'>impl</span> <span class='ident'>error</span>::<span class='ident'>Error</span> <span class='kw'>for</span> <span class='ident'>ColorParseError</span> {
@@ -504,315 +508,310 @@
     }
 
     <span class='kw'>fn</span> <span class='ident'>cause</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='prelude-ty'>Option</span><span class='op'>&lt;</span><span class='kw-2'>&amp;</span><span class='ident'>error</span>::<span class='ident'>Error</span><span class='op'>&gt;</span> {
-    	<span class='prelude-val'>None</span>
+        <span class='prelude-val'>None</span>
     }
 }
 
 <span class='kw'>impl</span> <span class='ident'>fmt</span>::<span class='ident'>Display</span> <span class='kw'>for</span> <span class='ident'>ColorParseError</span> {
     <span class='kw'>fn</span> <span class='ident'>fmt</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>, <span class='ident'>f</span>: <span class='kw-2'>&amp;</span><span class='kw-2'>mut</span> <span class='ident'>fmt</span>::<span class='ident'>Formatter</span>) <span class='op'>-&gt;</span> <span class='ident'>fmt</span>::<span class='prelude-ty'>Result</span> {
-    	<span class='macro'>write</span><span class='macro'>!</span>(<span class='ident'>f</span>, <span class='string'>&quot;ColorParseError: Invalid format&quot;</span>)
+        <span class='macro'>write</span><span class='macro'>!</span>(<span class='ident'>f</span>, <span class='string'>&quot;ColorParseError: Invalid format&quot;</span>)
     }
 }
 
-<span class='comment'>//TODO(7thSigil): check if platform byte order affects parsing</span>
-<span class='comment'>//TODO(7thSigil): maybe rewrite error handling into something more informative?</span>
-<span class='doccomment'>///Parses CSS3 color strings into rgba Color.</span>
-<span class='doccomment'>///Handles all errors to avoid any panic!s</span>
+<span class='comment'>// TODO(7thSigil): check if platform byte order affects parsing</span>
+<span class='comment'>// TODO(7thSigil): maybe rewrite error handling into something more informative?</span>
+<span class='doccomment'>/// Parses CSS3 color strings into rgba Color.</span>
+<span class='doccomment'>/// Handles all errors to avoid any panic!s</span>
 <span class='kw'>impl</span> <span class='ident'>str</span>::<span class='ident'>FromStr</span> <span class='kw'>for</span> <span class='ident'>Color</span> {
+    <span class='kw'>type</span> <span class='prelude-val'>Err</span> <span class='op'>=</span> <span class='ident'>ColorParseError</span>;
 
-	<span class='kw'>type</span> <span class='prelude-val'>Err</span> <span class='op'>=</span> <span class='ident'>ColorParseError</span>;
+    <span class='kw'>fn</span> <span class='ident'>from_str</span>(<span class='ident'>s</span>: <span class='kw-2'>&amp;</span><span class='ident'>str</span>) <span class='op'>-&gt;</span> <span class='prelude-ty'>Result</span><span class='op'>&lt;</span><span class='self'>Self</span>, <span class='ident'>ColorParseError</span><span class='op'>&gt;</span> {
+        <span class='kw'>use</span> <span class='ident'>std</span>::<span class='ident'>ascii</span>::<span class='ident'>AsciiExt</span>;
 
-	<span class='kw'>fn</span> <span class='ident'>from_str</span>(<span class='ident'>s</span>: <span class='kw-2'>&amp;</span><span class='ident'>str</span>) <span class='op'>-&gt;</span> <span class='prelude-ty'>Result</span><span class='op'>&lt;</span><span class='self'>Self</span>, <span class='ident'>ColorParseError</span><span class='op'>&gt;</span>
-	{
-		<span class='kw'>let</span> <span class='kw-2'>mut</span> <span class='ident'>string</span> <span class='op'>=</span> <span class='ident'>s</span>.<span class='ident'>to_string</span>();
+        <span class='kw'>let</span> <span class='ident'>s</span> <span class='op'>=</span> <span class='ident'>s</span>.<span class='ident'>trim</span>();
+        <span class='kw'>if</span> <span class='ident'>s</span>.<span class='ident'>is_empty</span>() {
+            <span class='kw'>return</span> <span class='prelude-val'>Err</span>(<span class='ident'>ColorParseError</span>);
+        }
 
-		<span class='comment'>// Remove all whitespace, not compliant, but should just be more accepting.</span>
-		<span class='ident'>string</span> <span class='op'>=</span> <span class='ident'>string</span>.<span class='ident'>replace</span>(<span class='string'>&quot; &quot;</span>, <span class='string'>&quot;&quot;</span>)
-					   .<span class='ident'>to_lowercase</span>();
+        <span class='comment'>// Remove all whitespace, not compliant, but should just be more accepting.</span>
+        <span class='kw'>let</span> <span class='kw-2'>mut</span> <span class='ident'>string</span> <span class='op'>=</span> <span class='ident'>s</span>.<span class='ident'>replace</span>(<span class='string'>&#39; &#39;</span>, <span class='string'>&quot;&quot;</span>);
+        <span class='ident'>string</span>.<span class='ident'>make_ascii_lowercase</span>();
 
-		<span class='kw'>if</span> <span class='ident'>string</span>.<span class='ident'>is_empty</span>()
-		{
-			<span class='kw'>return</span> <span class='prelude-val'>Err</span>(<span class='ident'>ColorParseError</span>);
-		}
+        <span class='kw'>if</span> <span class='kw'>let</span> <span class='prelude-val'>Some</span>(<span class='kw-2'>&amp;</span><span class='ident'>color</span>) <span class='op'>=</span> <span class='ident'>NAMED_COLORS</span>.<span class='ident'>get</span>(<span class='kw-2'>&amp;</span><span class='op'>*</span><span class='ident'>string</span>) {
+            <span class='kw'>return</span> <span class='prelude-val'>Ok</span>(<span class='ident'>color</span>);
+        }
 
-		<span class='kw'>let</span> <span class='kw-2'>mut</span> <span class='ident'>iterator</span> <span class='op'>=</span> <span class='ident'>NAMED_COLORS</span>.<span class='ident'>iter</span>();
+        <span class='kw'>if</span> <span class='ident'>string</span>.<span class='ident'>starts_with</span>(<span class='string'>&quot;#&quot;</span>) {
+            <span class='kw'>let</span> <span class='ident'>string_char_count</span> <span class='op'>=</span> <span class='ident'>string</span>.<span class='ident'>chars</span>().<span class='ident'>count</span>();
 
-		<span class='comment'>// Color keywords (and transparent) lookup.</span>
-		<span class='kw'>while</span> <span class='kw'>let</span> <span class='prelude-val'>Some</span>(<span class='ident'>named_color</span>) <span class='op'>=</span> <span class='ident'>iterator</span>.<span class='ident'>next</span>() {
-			<span class='kw'>if</span> <span class='ident'>named_color</span>.<span class='ident'>name</span> <span class='op'>==</span> <span class='ident'>string</span> { 
-				<span class='kw'>return</span> <span class='prelude-val'>Ok</span> ( <span class='ident'>named_color</span>.<span class='ident'>color</span> ); 
-			}
-		}
+            <span class='kw'>if</span> <span class='ident'>string_char_count</span> <span class='op'>==</span> <span class='number'>4</span> {
+                <span class='kw'>let</span> (_, <span class='ident'>value_string</span>) <span class='op'>=</span> <span class='ident'>string</span>.<span class='ident'>split_at</span>(<span class='number'>1</span>);
 
-		<span class='kw'>if</span> <span class='ident'>string</span>.<span class='ident'>starts_with</span>(<span class='string'>&quot;#&quot;</span>) {
-			<span class='kw'>let</span> <span class='ident'>string_char_count</span> <span class='op'>=</span> <span class='ident'>string</span>.<span class='ident'>chars</span>().<span class='ident'>count</span>();
+                <span class='kw'>let</span> <span class='ident'>iv</span> <span class='op'>=</span> <span class='macro'>try</span><span class='macro'>!</span>(<span class='ident'>u64</span>::<span class='ident'>from_str_radix</span>(<span class='ident'>value_string</span>, <span class='number'>16</span>));
 
-			<span class='kw'>if</span> <span class='ident'>string_char_count</span> <span class='op'>==</span> <span class='number'>4</span> {
-				<span class='kw'>let</span> (_, <span class='ident'>value_string</span>) <span class='op'>=</span> <span class='ident'>string</span>.<span class='ident'>split_at</span>(<span class='number'>1</span>);
+                <span class='comment'>// unlike original js code, NaN is impossible ()</span>
+                <span class='kw'>if</span> <span class='op'>!</span>(<span class='ident'>iv</span> <span class='op'>&lt;=</span> <span class='number'>0xfff</span>) {
+                    <span class='kw'>return</span> <span class='prelude-val'>Err</span>(<span class='ident'>ColorParseError</span>);
+                }
 
-				<span class='kw'>let</span> <span class='ident'>iv</span> <span class='op'>=</span> <span class='macro'>try</span><span class='macro'>!</span>(<span class='ident'>u64</span>::<span class='ident'>from_str_radix</span>(<span class='ident'>value_string</span>, <span class='number'>16</span>));
+                <span class='kw'>return</span> <span class='prelude-val'>Ok</span>(<span class='ident'>Color</span> {
+                    <span class='ident'>r</span>: (((<span class='ident'>iv</span> <span class='kw-2'>&amp;</span> <span class='number'>0xf00</span>) <span class='op'>&gt;&gt;</span> <span class='number'>4</span>) <span class='op'>|</span> ((<span class='ident'>iv</span> <span class='kw-2'>&amp;</span> <span class='number'>0xf00</span>) <span class='op'>&gt;&gt;</span> <span class='number'>8</span>)) <span class='kw'>as</span> <span class='ident'>u8</span>,
+                    <span class='ident'>g</span>: ((<span class='ident'>iv</span> <span class='kw-2'>&amp;</span> <span class='number'>0xf0</span>) <span class='op'>|</span> ((<span class='ident'>iv</span> <span class='kw-2'>&amp;</span> <span class='number'>0xf0</span>) <span class='op'>&gt;&gt;</span> <span class='number'>4</span>)) <span class='kw'>as</span> <span class='ident'>u8</span>,
+                    <span class='ident'>b</span>: ((<span class='ident'>iv</span> <span class='kw-2'>&amp;</span> <span class='number'>0xf</span>) <span class='op'>|</span> ((<span class='ident'>iv</span> <span class='kw-2'>&amp;</span> <span class='number'>0xf</span>) <span class='op'>&lt;&lt;</span> <span class='number'>4</span>)) <span class='kw'>as</span> <span class='ident'>u8</span>,
+                    <span class='ident'>a</span>: <span class='number'>1.0</span>,
+                });
+            } <span class='kw'>else</span> <span class='kw'>if</span> <span class='ident'>string_char_count</span> <span class='op'>==</span> <span class='number'>7</span> {
+                <span class='kw'>let</span> (_, <span class='ident'>value_string</span>) <span class='op'>=</span> <span class='ident'>string</span>.<span class='ident'>split_at</span>(<span class='number'>1</span>);
 
-				<span class='comment'>//unlike original js code, NaN is impossible ()</span>
-				<span class='kw'>if</span> <span class='op'>!</span>(<span class='ident'>iv</span> <span class='op'>&lt;=</span> <span class='number'>0xfff</span>) {
-					<span class='kw'>return</span> <span class='prelude-val'>Err</span>(<span class='ident'>ColorParseError</span>); 
-				}
+                <span class='kw'>let</span> <span class='ident'>iv</span> <span class='op'>=</span> <span class='macro'>try</span><span class='macro'>!</span>(<span class='ident'>u64</span>::<span class='ident'>from_str_radix</span>(<span class='ident'>value_string</span>, <span class='number'>16</span>));
 
-				<span class='kw'>return</span> <span class='prelude-val'>Ok</span> (<span class='ident'>Color</span> { <span class='ident'>r</span>: (((<span class='ident'>iv</span> <span class='kw-2'>&amp;</span> <span class='number'>0xf00</span>) <span class='op'>&gt;&gt;</span> <span class='number'>4</span>) <span class='op'>|</span> ((<span class='ident'>iv</span> <span class='kw-2'>&amp;</span> <span class='number'>0xf00</span>) <span class='op'>&gt;&gt;</span> <span class='number'>8</span>)) <span class='kw'>as</span> <span class='ident'>u8</span>,
-								   <span class='ident'>g</span>: ((<span class='ident'>iv</span> <span class='kw-2'>&amp;</span> <span class='number'>0xf0</span>) <span class='op'>|</span> ((<span class='ident'>iv</span> <span class='kw-2'>&amp;</span> <span class='number'>0xf0</span>) <span class='op'>&gt;&gt;</span> <span class='number'>4</span>)) <span class='kw'>as</span> <span class='ident'>u8</span>,
-								   <span class='ident'>b</span>: ((<span class='ident'>iv</span> <span class='kw-2'>&amp;</span> <span class='number'>0xf</span>) <span class='op'>|</span> ((<span class='ident'>iv</span> <span class='kw-2'>&amp;</span> <span class='number'>0xf</span>) <span class='op'>&lt;&lt;</span> <span class='number'>4</span>)) <span class='kw'>as</span> <span class='ident'>u8</span>,
-								   <span class='ident'>a</span>: <span class='number'>1.0</span> 
-								});
-			} 
-			<span class='kw'>else</span> <span class='kw'>if</span> <span class='ident'>string_char_count</span> <span class='op'>==</span> <span class='number'>7</span> {
-				<span class='kw'>let</span> (_, <span class='ident'>value_string</span>) <span class='op'>=</span> <span class='ident'>string</span>.<span class='ident'>split_at</span>(<span class='number'>1</span>);
+                <span class='comment'>// (7thSigil) unlike original js code, NaN is impossible</span>
+                <span class='kw'>if</span> <span class='op'>!</span>(<span class='ident'>iv</span> <span class='op'>&lt;=</span> <span class='number'>0xffffff</span>) {
+                    <span class='kw'>return</span> <span class='prelude-val'>Err</span>(<span class='ident'>ColorParseError</span>);
+                }
 
-				<span class='kw'>let</span> <span class='ident'>iv</span> <span class='op'>=</span> <span class='macro'>try</span><span class='macro'>!</span>(<span class='ident'>u64</span>::<span class='ident'>from_str_radix</span>(<span class='ident'>value_string</span>, <span class='number'>16</span>));
+                <span class='kw'>return</span> <span class='prelude-val'>Ok</span>(<span class='ident'>Color</span> {
+                    <span class='ident'>r</span>: ((<span class='ident'>iv</span> <span class='kw-2'>&amp;</span> <span class='number'>0xff0000</span>) <span class='op'>&gt;&gt;</span> <span class='number'>16</span>) <span class='kw'>as</span> <span class='ident'>u8</span>,
+                    <span class='ident'>g</span>: ((<span class='ident'>iv</span> <span class='kw-2'>&amp;</span> <span class='number'>0xff00</span>) <span class='op'>&gt;&gt;</span> <span class='number'>8</span>) <span class='kw'>as</span> <span class='ident'>u8</span>,
+                    <span class='ident'>b</span>: (<span class='ident'>iv</span> <span class='kw-2'>&amp;</span> <span class='number'>0xff</span>) <span class='kw'>as</span> <span class='ident'>u8</span>,
+                    <span class='ident'>a</span>: <span class='number'>1.0</span>,
+                });
+            }
 
-				<span class='comment'>//(7thSigil) unlike original js code, NaN is impossible</span>
-				<span class='kw'>if</span> <span class='op'>!</span>(<span class='ident'>iv</span> <span class='op'>&lt;=</span> <span class='number'>0xffffff</span>) {
-					<span class='kw'>return</span> <span class='prelude-val'>Err</span>(<span class='ident'>ColorParseError</span>); 
-				}
+            <span class='kw'>return</span> <span class='prelude-val'>Err</span>(<span class='ident'>ColorParseError</span>);
+        }
 
-				<span class='kw'>return</span> <span class='prelude-val'>Ok</span> (<span class='ident'>Color</span> { <span class='ident'>r</span>: ((<span class='ident'>iv</span> <span class='kw-2'>&amp;</span> <span class='number'>0xff0000</span>) <span class='op'>&gt;&gt;</span> <span class='number'>16</span>) <span class='kw'>as</span> <span class='ident'>u8</span>,
-								   <span class='ident'>g</span>: ((<span class='ident'>iv</span> <span class='kw-2'>&amp;</span> <span class='number'>0xff00</span>) <span class='op'>&gt;&gt;</span> <span class='number'>8</span>) <span class='kw'>as</span> <span class='ident'>u8</span>,
-								   <span class='ident'>b</span>: (<span class='ident'>iv</span> <span class='kw-2'>&amp;</span> <span class='number'>0xff</span>) <span class='kw'>as</span> <span class='ident'>u8</span>,
-								   <span class='ident'>a</span>: <span class='number'>1.0</span> 
-								});
-			}
+        <span class='kw'>let</span> <span class='ident'>op</span> <span class='op'>=</span> <span class='macro'>try</span><span class='macro'>!</span>(<span class='ident'>string</span>.<span class='ident'>find</span>(<span class='string'>&quot;(&quot;</span>).<span class='ident'>ok_or</span>(<span class='ident'>ColorParseError</span>));
+        <span class='kw'>let</span> <span class='ident'>ep</span> <span class='op'>=</span> <span class='macro'>try</span><span class='macro'>!</span>(<span class='ident'>string</span>.<span class='ident'>find</span>(<span class='string'>&quot;)&quot;</span>).<span class='ident'>ok_or</span>(<span class='ident'>ColorParseError</span>));
 
-			<span class='kw'>return</span> <span class='prelude-val'>Err</span>(<span class='ident'>ColorParseError</span>);
-		}
+        <span class='comment'>// (7thSigil) validating format</span>
+        <span class='comment'>// &#39;)&#39; bracket should be at the end</span>
+        <span class='comment'>// and always after the opening bracket</span>
+        <span class='kw'>if</span> (<span class='ident'>ep</span> <span class='op'>+</span> <span class='number'>1</span>) <span class='op'>!=</span> <span class='ident'>string</span>.<span class='ident'>len</span>() <span class='op'>||</span> <span class='ident'>ep</span> <span class='op'>&lt;</span> <span class='ident'>op</span> {
+            <span class='kw'>return</span> <span class='prelude-val'>Err</span>(<span class='ident'>ColorParseError</span>);
+        }
 
-		<span class='kw'>let</span> <span class='ident'>op</span> <span class='op'>=</span> <span class='macro'>try</span><span class='macro'>!</span>(<span class='ident'>string</span>.<span class='ident'>find</span>(<span class='string'>&quot;(&quot;</span>).<span class='ident'>ok_or</span>(<span class='ident'>ColorParseError</span>));
-		<span class='kw'>let</span> <span class='ident'>ep</span> <span class='op'>=</span> <span class='macro'>try</span><span class='macro'>!</span>(<span class='ident'>string</span>.<span class='ident'>find</span>(<span class='string'>&quot;)&quot;</span>).<span class='ident'>ok_or</span>(<span class='ident'>ColorParseError</span>));
+        <span class='comment'>// (7thSigil) extracting format</span>
+        <span class='kw'>let</span> (<span class='ident'>fmt</span>, <span class='ident'>right_string_half</span>) <span class='op'>=</span> <span class='ident'>string</span>.<span class='ident'>split_at</span>(<span class='ident'>op</span>);
 
-		<span class='comment'>//(7thSigil) validating format</span>
-		<span class='comment'>//&#39;)&#39; bracket should be at the end</span>
-		<span class='comment'>//and always after the opening bracket</span>
-		<span class='kw'>if</span> (<span class='ident'>ep</span> <span class='op'>+</span> <span class='number'>1</span>) <span class='op'>!=</span> <span class='ident'>string</span>.<span class='ident'>len</span>() <span class='op'>||</span> <span class='ident'>ep</span> <span class='op'>&lt;</span> <span class='ident'>op</span> {
-			<span class='kw'>return</span> <span class='prelude-val'>Err</span>(<span class='ident'>ColorParseError</span>);
-		}
+        <span class='comment'>// (7thSigil) validating format</span>
+        <span class='kw'>if</span> <span class='ident'>fmt</span>.<span class='ident'>is_empty</span>() {
+            <span class='kw'>return</span> <span class='prelude-val'>Err</span>(<span class='ident'>ColorParseError</span>);
+        }
 
-		<span class='comment'>//(7thSigil) extracting format</span>
-		<span class='kw'>let</span> (<span class='ident'>fmt</span>, <span class='ident'>right_string_half</span>) <span class='op'>=</span> <span class='ident'>string</span>.<span class='ident'>split_at</span>(<span class='ident'>op</span>);
+        <span class='comment'>// removing brackets</span>
+        <span class='kw'>let</span> <span class='kw-2'>mut</span> <span class='ident'>filtered_right_string_half</span> <span class='op'>=</span> <span class='ident'>right_string_half</span>.<span class='ident'>to_string</span>();
 
-		<span class='comment'>//(7thSigil) validating format</span>
-		<span class='kw'>if</span> <span class='ident'>fmt</span>.<span class='ident'>is_empty</span>() {
-			<span class='kw'>return</span> <span class='prelude-val'>Err</span>(<span class='ident'>ColorParseError</span>);
-		}
+        <span class='comment'>// removing brackets</span>
+        <span class='ident'>filtered_right_string_half</span>.<span class='ident'>remove</span>(<span class='number'>0</span>);
+        <span class='ident'>filtered_right_string_half</span>.<span class='ident'>pop</span>();
 
-		<span class='comment'>//removing brackets</span>
-		<span class='kw'>let</span> <span class='kw-2'>mut</span> <span class='ident'>filtered_right_string_half</span> <span class='op'>=</span> <span class='ident'>right_string_half</span>.<span class='ident'>to_string</span>();
+        <span class='kw'>let</span> <span class='ident'>params</span>: <span class='ident'>Vec</span><span class='op'>&lt;</span><span class='kw-2'>&amp;</span><span class='ident'>str</span><span class='op'>&gt;</span> <span class='op'>=</span> <span class='ident'>filtered_right_string_half</span>.<span class='ident'>split</span>(<span class='string'>&quot;,&quot;</span>).<span class='ident'>collect</span>();
 
-		<span class='comment'>//removing brackets</span>
-		<span class='ident'>filtered_right_string_half</span>.<span class='ident'>remove</span>(<span class='number'>0</span>);
-		<span class='ident'>filtered_right_string_half</span>.<span class='ident'>pop</span>();
+        <span class='comment'>// (7thSigil) validating format</span>
+        <span class='kw'>if</span> <span class='ident'>params</span>.<span class='ident'>len</span>() <span class='op'>&lt;</span> <span class='number'>3</span> <span class='op'>||</span> <span class='ident'>params</span>.<span class='ident'>len</span>() <span class='op'>&gt;</span> <span class='number'>4</span> {
+            <span class='kw'>return</span> <span class='prelude-val'>Err</span>(<span class='ident'>ColorParseError</span>);
+        }
 
-		<span class='kw'>let</span> <span class='ident'>params</span>: <span class='ident'>Vec</span><span class='op'>&lt;</span><span class='kw-2'>&amp;</span><span class='ident'>str</span><span class='op'>&gt;</span> <span class='op'>=</span> <span class='ident'>filtered_right_string_half</span>.<span class='ident'>split</span>(<span class='string'>&quot;,&quot;</span>).<span class='ident'>collect</span>();
+        <span class='kw'>if</span> <span class='ident'>fmt</span> <span class='op'>==</span> <span class='string'>&quot;rgba&quot;</span> {
+            <span class='kw'>return</span> <span class='ident'>parse_rgba</span>(<span class='ident'>params</span>);
+        } <span class='kw'>else</span> <span class='kw'>if</span> <span class='ident'>fmt</span> <span class='op'>==</span> <span class='string'>&quot;rgb&quot;</span> {
+            <span class='kw'>return</span> <span class='ident'>parse_rgb</span>(<span class='ident'>params</span>);
+        } <span class='kw'>else</span> <span class='kw'>if</span> <span class='ident'>fmt</span> <span class='op'>==</span> <span class='string'>&quot;hsla&quot;</span> {
+            <span class='kw'>return</span> <span class='ident'>parse_hsla</span>(<span class='ident'>params</span>);
+        } <span class='kw'>else</span> <span class='kw'>if</span> <span class='ident'>fmt</span> <span class='op'>==</span> <span class='string'>&quot;hsl&quot;</span> {
+            <span class='kw'>return</span> <span class='ident'>parse_hsl</span>(<span class='ident'>params</span>);
+        }
 
-		<span class='comment'>//(7thSigil) validating format</span>
-		<span class='kw'>if</span> <span class='ident'>params</span>.<span class='ident'>len</span>() <span class='op'>&lt;</span> <span class='number'>3</span> <span class='op'>||</span> <span class='ident'>params</span>.<span class='ident'>len</span>() <span class='op'>&gt;</span> <span class='number'>4</span> {
-			<span class='kw'>return</span> <span class='prelude-val'>Err</span>(<span class='ident'>ColorParseError</span>);
-		} 
-
-		<span class='kw'>if</span> <span class='ident'>fmt</span> <span class='op'>==</span> <span class='string'>&quot;rgba&quot;</span>
-		{
-			<span class='kw'>return</span> <span class='ident'>parse_rgba</span>(<span class='ident'>params</span>);
-		} 
-		<span class='kw'>else</span> <span class='kw'>if</span> <span class='ident'>fmt</span> <span class='op'>==</span> <span class='string'>&quot;rgb&quot;</span> {
-			<span class='kw'>return</span> <span class='ident'>parse_rgb</span>(<span class='ident'>params</span>);
-		}
-		<span class='kw'>else</span> <span class='kw'>if</span> <span class='ident'>fmt</span> <span class='op'>==</span> <span class='string'>&quot;hsla&quot;</span> {
-			<span class='kw'>return</span> <span class='ident'>parse_hsla</span>(<span class='ident'>params</span>);
-		} 
-		<span class='kw'>else</span> <span class='kw'>if</span> <span class='ident'>fmt</span> <span class='op'>==</span> <span class='string'>&quot;hsl&quot;</span> {
-			<span class='kw'>return</span> <span class='ident'>parse_hsl</span>(<span class='ident'>params</span>);
-		}
-
-		<span class='kw'>return</span> <span class='prelude-val'>Err</span>(<span class='ident'>ColorParseError</span>);
-	}
+        <span class='kw'>return</span> <span class='prelude-val'>Err</span>(<span class='ident'>ColorParseError</span>);
+    }
 }
 
 <span class='kw'>fn</span> <span class='ident'>parse_rgba</span>(<span class='kw-2'>mut</span> <span class='ident'>rgba</span>: <span class='ident'>Vec</span><span class='op'>&lt;</span><span class='kw-2'>&amp;</span><span class='ident'>str</span><span class='op'>&gt;</span>) <span class='op'>-&gt;</span> <span class='prelude-ty'>Result</span><span class='op'>&lt;</span><span class='ident'>Color</span>, <span class='ident'>ColorParseError</span><span class='op'>&gt;</span> {
 
-	<span class='kw'>if</span> <span class='ident'>rgba</span>.<span class='ident'>len</span>() <span class='op'>!=</span> <span class='number'>4</span> {
-		<span class='kw'>return</span> <span class='prelude-val'>Err</span>(<span class='ident'>ColorParseError</span>);
-	}
+    <span class='kw'>if</span> <span class='ident'>rgba</span>.<span class='ident'>len</span>() <span class='op'>!=</span> <span class='number'>4</span> {
+        <span class='kw'>return</span> <span class='prelude-val'>Err</span>(<span class='ident'>ColorParseError</span>);
+    }
 
-	<span class='kw'>let</span> <span class='ident'>a_str</span> <span class='op'>=</span> <span class='macro'>try</span><span class='macro'>!</span>(<span class='ident'>rgba</span>.<span class='ident'>pop</span>().<span class='ident'>ok_or</span>(<span class='ident'>ColorParseError</span>));
+    <span class='kw'>let</span> <span class='ident'>a_str</span> <span class='op'>=</span> <span class='macro'>try</span><span class='macro'>!</span>(<span class='ident'>rgba</span>.<span class='ident'>pop</span>().<span class='ident'>ok_or</span>(<span class='ident'>ColorParseError</span>));
 
-	<span class='kw'>let</span> <span class='ident'>a</span> <span class='op'>=</span> <span class='macro'>try</span><span class='macro'>!</span>(<span class='ident'>parse_css_float</span>(<span class='ident'>a_str</span>));
+    <span class='kw'>let</span> <span class='ident'>a</span> <span class='op'>=</span> <span class='macro'>try</span><span class='macro'>!</span>(<span class='ident'>parse_css_float</span>(<span class='ident'>a_str</span>));
 
-	<span class='kw'>let</span> <span class='kw-2'>mut</span> <span class='ident'>rgb_color</span> <span class='op'>=</span> <span class='macro'>try</span><span class='macro'>!</span>(<span class='ident'>parse_rgb</span>(<span class='ident'>rgba</span>));
+    <span class='kw'>let</span> <span class='kw-2'>mut</span> <span class='ident'>rgb_color</span> <span class='op'>=</span> <span class='macro'>try</span><span class='macro'>!</span>(<span class='ident'>parse_rgb</span>(<span class='ident'>rgba</span>));
 
-	<span class='ident'>rgb_color</span> <span class='op'>=</span> <span class='ident'>Color</span> { <span class='ident'>a</span>: <span class='ident'>a</span>, .. <span class='ident'>rgb_color</span> };
+    <span class='ident'>rgb_color</span> <span class='op'>=</span> <span class='ident'>Color</span> { <span class='ident'>a</span>: <span class='ident'>a</span>, ..<span class='ident'>rgb_color</span> };
 
-	<span class='kw'>return</span> <span class='prelude-val'>Ok</span>(<span class='ident'>rgb_color</span>);
+    <span class='kw'>return</span> <span class='prelude-val'>Ok</span>(<span class='ident'>rgb_color</span>);
 }
 
 <span class='kw'>fn</span> <span class='ident'>parse_rgb</span>(<span class='kw-2'>mut</span> <span class='ident'>rgb</span>: <span class='ident'>Vec</span><span class='op'>&lt;</span><span class='kw-2'>&amp;</span><span class='ident'>str</span><span class='op'>&gt;</span>) <span class='op'>-&gt;</span> <span class='prelude-ty'>Result</span><span class='op'>&lt;</span><span class='ident'>Color</span>, <span class='ident'>ColorParseError</span><span class='op'>&gt;</span> {
 
-	<span class='kw'>if</span> <span class='ident'>rgb</span>.<span class='ident'>len</span>() <span class='op'>!=</span> <span class='number'>3</span> {
-		<span class='kw'>return</span> <span class='prelude-val'>Err</span>(<span class='ident'>ColorParseError</span>);
-	}
+    <span class='kw'>if</span> <span class='ident'>rgb</span>.<span class='ident'>len</span>() <span class='op'>!=</span> <span class='number'>3</span> {
+        <span class='kw'>return</span> <span class='prelude-val'>Err</span>(<span class='ident'>ColorParseError</span>);
+    }
 
-	<span class='kw'>let</span> <span class='ident'>b_str</span> <span class='op'>=</span> <span class='macro'>try</span><span class='macro'>!</span>(<span class='ident'>rgb</span>.<span class='ident'>pop</span>().<span class='ident'>ok_or</span>(<span class='ident'>ColorParseError</span>));
-	<span class='kw'>let</span> <span class='ident'>g_str</span> <span class='op'>=</span> <span class='macro'>try</span><span class='macro'>!</span>(<span class='ident'>rgb</span>.<span class='ident'>pop</span>().<span class='ident'>ok_or</span>(<span class='ident'>ColorParseError</span>));
-	<span class='kw'>let</span> <span class='ident'>r_str</span> <span class='op'>=</span> <span class='macro'>try</span><span class='macro'>!</span>(<span class='ident'>rgb</span>.<span class='ident'>pop</span>().<span class='ident'>ok_or</span>(<span class='ident'>ColorParseError</span>));
+    <span class='kw'>let</span> <span class='ident'>b_str</span> <span class='op'>=</span> <span class='macro'>try</span><span class='macro'>!</span>(<span class='ident'>rgb</span>.<span class='ident'>pop</span>().<span class='ident'>ok_or</span>(<span class='ident'>ColorParseError</span>));
+    <span class='kw'>let</span> <span class='ident'>g_str</span> <span class='op'>=</span> <span class='macro'>try</span><span class='macro'>!</span>(<span class='ident'>rgb</span>.<span class='ident'>pop</span>().<span class='ident'>ok_or</span>(<span class='ident'>ColorParseError</span>));
+    <span class='kw'>let</span> <span class='ident'>r_str</span> <span class='op'>=</span> <span class='macro'>try</span><span class='macro'>!</span>(<span class='ident'>rgb</span>.<span class='ident'>pop</span>().<span class='ident'>ok_or</span>(<span class='ident'>ColorParseError</span>));
 
-	<span class='kw'>let</span> <span class='ident'>r</span> <span class='op'>=</span> <span class='macro'>try</span><span class='macro'>!</span>(<span class='ident'>parse_css_int</span>(<span class='ident'>r_str</span>));
-	<span class='kw'>let</span> <span class='ident'>g</span> <span class='op'>=</span> <span class='macro'>try</span><span class='macro'>!</span>(<span class='ident'>parse_css_int</span>(<span class='ident'>g_str</span>));
-	<span class='kw'>let</span> <span class='ident'>b</span> <span class='op'>=</span> <span class='macro'>try</span><span class='macro'>!</span>(<span class='ident'>parse_css_int</span>(<span class='ident'>b_str</span>));
+    <span class='kw'>let</span> <span class='ident'>r</span> <span class='op'>=</span> <span class='macro'>try</span><span class='macro'>!</span>(<span class='ident'>parse_css_int</span>(<span class='ident'>r_str</span>));
+    <span class='kw'>let</span> <span class='ident'>g</span> <span class='op'>=</span> <span class='macro'>try</span><span class='macro'>!</span>(<span class='ident'>parse_css_int</span>(<span class='ident'>g_str</span>));
+    <span class='kw'>let</span> <span class='ident'>b</span> <span class='op'>=</span> <span class='macro'>try</span><span class='macro'>!</span>(<span class='ident'>parse_css_int</span>(<span class='ident'>b_str</span>));
 
-	<span class='kw'>return</span> <span class='prelude-val'>Ok</span>(<span class='ident'>Color</span> { <span class='ident'>r</span>: <span class='ident'>r</span>, <span class='ident'>g</span>: <span class='ident'>g</span>, <span class='ident'>b</span>: <span class='ident'>b</span>, <span class='ident'>a</span>: <span class='number'>1.0</span> })
+    <span class='kw'>return</span> <span class='prelude-val'>Ok</span>(<span class='ident'>Color</span> {
+        <span class='ident'>r</span>: <span class='ident'>r</span>,
+        <span class='ident'>g</span>: <span class='ident'>g</span>,
+        <span class='ident'>b</span>: <span class='ident'>b</span>,
+        <span class='ident'>a</span>: <span class='number'>1.0</span>,
+    });
 }
 
-<span class='kw'>fn</span> <span class='ident'>parse_hsla</span> (<span class='kw-2'>mut</span> <span class='ident'>hsla</span>: <span class='ident'>Vec</span><span class='op'>&lt;</span><span class='kw-2'>&amp;</span><span class='ident'>str</span><span class='op'>&gt;</span>) <span class='op'>-&gt;</span> <span class='prelude-ty'>Result</span><span class='op'>&lt;</span><span class='ident'>Color</span>, <span class='ident'>ColorParseError</span><span class='op'>&gt;</span> {
+<span class='kw'>fn</span> <span class='ident'>parse_hsla</span>(<span class='kw-2'>mut</span> <span class='ident'>hsla</span>: <span class='ident'>Vec</span><span class='op'>&lt;</span><span class='kw-2'>&amp;</span><span class='ident'>str</span><span class='op'>&gt;</span>) <span class='op'>-&gt;</span> <span class='prelude-ty'>Result</span><span class='op'>&lt;</span><span class='ident'>Color</span>, <span class='ident'>ColorParseError</span><span class='op'>&gt;</span> {
 
-	<span class='kw'>if</span> <span class='ident'>hsla</span>.<span class='ident'>len</span>() <span class='op'>!=</span> <span class='number'>4</span> {
-		<span class='kw'>return</span> <span class='prelude-val'>Err</span>(<span class='ident'>ColorParseError</span>);
-	}
+    <span class='kw'>if</span> <span class='ident'>hsla</span>.<span class='ident'>len</span>() <span class='op'>!=</span> <span class='number'>4</span> {
+        <span class='kw'>return</span> <span class='prelude-val'>Err</span>(<span class='ident'>ColorParseError</span>);
+    }
 
-	<span class='kw'>let</span> <span class='ident'>a_str</span> <span class='op'>=</span> <span class='macro'>try</span><span class='macro'>!</span>(<span class='ident'>hsla</span>.<span class='ident'>pop</span>().<span class='ident'>ok_or</span>(<span class='ident'>ColorParseError</span>));
+    <span class='kw'>let</span> <span class='ident'>a_str</span> <span class='op'>=</span> <span class='macro'>try</span><span class='macro'>!</span>(<span class='ident'>hsla</span>.<span class='ident'>pop</span>().<span class='ident'>ok_or</span>(<span class='ident'>ColorParseError</span>));
 
-	<span class='kw'>let</span> <span class='ident'>a</span> <span class='op'>=</span> <span class='macro'>try</span><span class='macro'>!</span>(<span class='ident'>parse_css_float</span>(<span class='ident'>a_str</span>));
+    <span class='kw'>let</span> <span class='ident'>a</span> <span class='op'>=</span> <span class='macro'>try</span><span class='macro'>!</span>(<span class='ident'>parse_css_float</span>(<span class='ident'>a_str</span>));
 
-	<span class='comment'>//(7thSigil) Parsed from hsl to rgb representation</span>
-	<span class='kw'>let</span> <span class='kw-2'>mut</span> <span class='ident'>rgb_color</span> : <span class='ident'>Color</span> <span class='op'>=</span> <span class='macro'>try</span><span class='macro'>!</span>(<span class='ident'>parse_hsl</span>(<span class='ident'>hsla</span>));
+    <span class='comment'>// (7thSigil) Parsed from hsl to rgb representation</span>
+    <span class='kw'>let</span> <span class='kw-2'>mut</span> <span class='ident'>rgb_color</span>: <span class='ident'>Color</span> <span class='op'>=</span> <span class='macro'>try</span><span class='macro'>!</span>(<span class='ident'>parse_hsl</span>(<span class='ident'>hsla</span>));
 
-	<span class='ident'>rgb_color</span> <span class='op'>=</span> <span class='ident'>Color</span> { <span class='ident'>a</span>: <span class='ident'>a</span>, .. <span class='ident'>rgb_color</span> };
+    <span class='ident'>rgb_color</span> <span class='op'>=</span> <span class='ident'>Color</span> { <span class='ident'>a</span>: <span class='ident'>a</span>, ..<span class='ident'>rgb_color</span> };
 
-	<span class='kw'>return</span> <span class='prelude-val'>Ok</span>(<span class='ident'>rgb_color</span>);
+    <span class='kw'>return</span> <span class='prelude-val'>Ok</span>(<span class='ident'>rgb_color</span>);
 }
 
-<span class='kw'>fn</span> <span class='ident'>parse_hsl</span> (<span class='kw-2'>mut</span> <span class='ident'>hsl</span>: <span class='ident'>Vec</span><span class='op'>&lt;</span><span class='kw-2'>&amp;</span><span class='ident'>str</span><span class='op'>&gt;</span>) <span class='op'>-&gt;</span> <span class='prelude-ty'>Result</span><span class='op'>&lt;</span><span class='ident'>Color</span>, <span class='ident'>ColorParseError</span><span class='op'>&gt;</span> {
+<span class='kw'>fn</span> <span class='ident'>parse_hsl</span>(<span class='kw-2'>mut</span> <span class='ident'>hsl</span>: <span class='ident'>Vec</span><span class='op'>&lt;</span><span class='kw-2'>&amp;</span><span class='ident'>str</span><span class='op'>&gt;</span>) <span class='op'>-&gt;</span> <span class='prelude-ty'>Result</span><span class='op'>&lt;</span><span class='ident'>Color</span>, <span class='ident'>ColorParseError</span><span class='op'>&gt;</span> {
 
-	<span class='kw'>if</span> <span class='ident'>hsl</span>.<span class='ident'>len</span>() <span class='op'>!=</span> <span class='number'>3</span> {
-		<span class='kw'>return</span> <span class='prelude-val'>Err</span>(<span class='ident'>ColorParseError</span>);
-	}
+    <span class='kw'>if</span> <span class='ident'>hsl</span>.<span class='ident'>len</span>() <span class='op'>!=</span> <span class='number'>3</span> {
+        <span class='kw'>return</span> <span class='prelude-val'>Err</span>(<span class='ident'>ColorParseError</span>);
+    }
 
-	<span class='kw'>let</span> <span class='ident'>l_str</span> <span class='op'>=</span> <span class='macro'>try</span><span class='macro'>!</span>(<span class='ident'>hsl</span>.<span class='ident'>pop</span>().<span class='ident'>ok_or</span>(<span class='ident'>ColorParseError</span>));
-	<span class='kw'>let</span> <span class='ident'>s_str</span> <span class='op'>=</span> <span class='macro'>try</span><span class='macro'>!</span>(<span class='ident'>hsl</span>.<span class='ident'>pop</span>().<span class='ident'>ok_or</span>(<span class='ident'>ColorParseError</span>));
-	<span class='kw'>let</span> <span class='ident'>h_str</span> <span class='op'>=</span> <span class='macro'>try</span><span class='macro'>!</span>(<span class='ident'>hsl</span>.<span class='ident'>pop</span>().<span class='ident'>ok_or</span>(<span class='ident'>ColorParseError</span>));
+    <span class='kw'>let</span> <span class='ident'>l_str</span> <span class='op'>=</span> <span class='macro'>try</span><span class='macro'>!</span>(<span class='ident'>hsl</span>.<span class='ident'>pop</span>().<span class='ident'>ok_or</span>(<span class='ident'>ColorParseError</span>));
+    <span class='kw'>let</span> <span class='ident'>s_str</span> <span class='op'>=</span> <span class='macro'>try</span><span class='macro'>!</span>(<span class='ident'>hsl</span>.<span class='ident'>pop</span>().<span class='ident'>ok_or</span>(<span class='ident'>ColorParseError</span>));
+    <span class='kw'>let</span> <span class='ident'>h_str</span> <span class='op'>=</span> <span class='macro'>try</span><span class='macro'>!</span>(<span class='ident'>hsl</span>.<span class='ident'>pop</span>().<span class='ident'>ok_or</span>(<span class='ident'>ColorParseError</span>));
 
-	<span class='kw'>let</span> <span class='kw-2'>mut</span> <span class='ident'>h</span> <span class='op'>=</span> <span class='macro'>try</span><span class='macro'>!</span>(<span class='ident'>f32</span>::<span class='ident'>from_str</span>(<span class='ident'>h_str</span>));
+    <span class='kw'>let</span> <span class='kw-2'>mut</span> <span class='ident'>h</span> <span class='op'>=</span> <span class='macro'>try</span><span class='macro'>!</span>(<span class='ident'>f32</span>::<span class='ident'>from_str</span>(<span class='ident'>h_str</span>));
 
-	<span class='comment'>// 0 .. 1</span>
-	<span class='ident'>h</span> <span class='op'>=</span> (((<span class='ident'>h</span> <span class='op'>%</span> <span class='number'>360.0</span>) <span class='op'>+</span> <span class='number'>360.0</span>) <span class='op'>%</span> <span class='number'>360.0</span>) <span class='op'>/</span> <span class='number'>360.0</span>; 
+    <span class='comment'>// 0 .. 1</span>
+    <span class='ident'>h</span> <span class='op'>=</span> (((<span class='ident'>h</span> <span class='op'>%</span> <span class='number'>360.0</span>) <span class='op'>+</span> <span class='number'>360.0</span>) <span class='op'>%</span> <span class='number'>360.0</span>) <span class='op'>/</span> <span class='number'>360.0</span>;
 
-	<span class='comment'>// NOTE(deanm): According to the CSS spec s/l should only be</span>
-	<span class='comment'>// percentages, but we don&#39;t bother and let float or percentage.</span>
+    <span class='comment'>// NOTE(deanm): According to the CSS spec s/l should only be</span>
+    <span class='comment'>// percentages, but we don&#39;t bother and let float or percentage.</span>
 
-	<span class='kw'>let</span> <span class='ident'>s</span> <span class='op'>=</span> <span class='macro'>try</span><span class='macro'>!</span>(<span class='ident'>parse_css_float</span>(<span class='ident'>s_str</span>));
-	<span class='kw'>let</span> <span class='ident'>l</span> <span class='op'>=</span> <span class='macro'>try</span><span class='macro'>!</span>(<span class='ident'>parse_css_float</span>(<span class='ident'>l_str</span>));
+    <span class='kw'>let</span> <span class='ident'>s</span> <span class='op'>=</span> <span class='macro'>try</span><span class='macro'>!</span>(<span class='ident'>parse_css_float</span>(<span class='ident'>s_str</span>));
+    <span class='kw'>let</span> <span class='ident'>l</span> <span class='op'>=</span> <span class='macro'>try</span><span class='macro'>!</span>(<span class='ident'>parse_css_float</span>(<span class='ident'>l_str</span>));
 
-	<span class='kw'>let</span> <span class='ident'>m2</span>: <span class='ident'>f32</span>;
+    <span class='kw'>let</span> <span class='ident'>m2</span>: <span class='ident'>f32</span>;
 
-	<span class='kw'>if</span> <span class='ident'>l</span> <span class='op'>&lt;=</span> <span class='number'>0.5</span> {
-		<span class='ident'>m2</span> <span class='op'>=</span> <span class='ident'>l</span> <span class='op'>*</span> (<span class='ident'>s</span> <span class='op'>+</span> <span class='number'>1.0</span>)
-	} <span class='kw'>else</span> {
-		<span class='ident'>m2</span><span class='op'>=</span> <span class='ident'>l</span> <span class='op'>+</span> <span class='ident'>s</span> <span class='op'>-</span> <span class='ident'>l</span> <span class='op'>*</span> <span class='ident'>s</span>;
-	}
+    <span class='kw'>if</span> <span class='ident'>l</span> <span class='op'>&lt;=</span> <span class='number'>0.5</span> {
+        <span class='ident'>m2</span> <span class='op'>=</span> <span class='ident'>l</span> <span class='op'>*</span> (<span class='ident'>s</span> <span class='op'>+</span> <span class='number'>1.0</span>)
+    } <span class='kw'>else</span> {
+        <span class='ident'>m2</span> <span class='op'>=</span> <span class='ident'>l</span> <span class='op'>+</span> <span class='ident'>s</span> <span class='op'>-</span> <span class='ident'>l</span> <span class='op'>*</span> <span class='ident'>s</span>;
+    }
 
-	<span class='kw'>let</span> <span class='ident'>m1</span> <span class='op'>=</span> <span class='ident'>l</span> <span class='op'>*</span> <span class='number'>2.0</span> <span class='op'>-</span> <span class='ident'>m2</span>;
+    <span class='kw'>let</span> <span class='ident'>m1</span> <span class='op'>=</span> <span class='ident'>l</span> <span class='op'>*</span> <span class='number'>2.0</span> <span class='op'>-</span> <span class='ident'>m2</span>;
 
-	<span class='kw'>let</span> <span class='ident'>r</span> <span class='op'>=</span> <span class='ident'>clamp_css_byte_from_float</span>(<span class='ident'>css_hue_to_rgb</span>(<span class='ident'>m1</span>, <span class='ident'>m2</span>, <span class='ident'>h</span><span class='op'>+</span><span class='number'>1.0</span><span class='op'>/</span><span class='number'>3.0</span>) <span class='op'>*</span> <span class='number'>255.0</span>);
-	<span class='kw'>let</span> <span class='ident'>g</span> <span class='op'>=</span> <span class='ident'>clamp_css_byte_from_float</span>(<span class='ident'>css_hue_to_rgb</span>(<span class='ident'>m1</span>, <span class='ident'>m2</span>, <span class='ident'>h</span>) <span class='op'>*</span> <span class='number'>255.0</span>);
-	<span class='kw'>let</span> <span class='ident'>b</span> <span class='op'>=</span> <span class='ident'>clamp_css_byte_from_float</span>(<span class='ident'>css_hue_to_rgb</span>(<span class='ident'>m1</span>, <span class='ident'>m2</span>, <span class='ident'>h</span><span class='op'>-</span><span class='number'>1.0</span><span class='op'>/</span><span class='number'>3.0</span>) <span class='op'>*</span> <span class='number'>255.0</span>);
+    <span class='kw'>let</span> <span class='ident'>r</span> <span class='op'>=</span> <span class='ident'>clamp_css_byte_from_float</span>(<span class='ident'>css_hue_to_rgb</span>(<span class='ident'>m1</span>, <span class='ident'>m2</span>, <span class='ident'>h</span> <span class='op'>+</span> <span class='number'>1.0</span> <span class='op'>/</span> <span class='number'>3.0</span>) <span class='op'>*</span> <span class='number'>255.0</span>);
+    <span class='kw'>let</span> <span class='ident'>g</span> <span class='op'>=</span> <span class='ident'>clamp_css_byte_from_float</span>(<span class='ident'>css_hue_to_rgb</span>(<span class='ident'>m1</span>, <span class='ident'>m2</span>, <span class='ident'>h</span>) <span class='op'>*</span> <span class='number'>255.0</span>);
+    <span class='kw'>let</span> <span class='ident'>b</span> <span class='op'>=</span> <span class='ident'>clamp_css_byte_from_float</span>(<span class='ident'>css_hue_to_rgb</span>(<span class='ident'>m1</span>, <span class='ident'>m2</span>, <span class='ident'>h</span> <span class='op'>-</span> <span class='number'>1.0</span> <span class='op'>/</span> <span class='number'>3.0</span>) <span class='op'>*</span> <span class='number'>255.0</span>);
 
-	<span class='kw'>return</span> <span class='prelude-val'>Ok</span>(<span class='ident'>Color</span> { <span class='ident'>r</span>: <span class='ident'>r</span>, <span class='ident'>g</span>: <span class='ident'>g</span>, <span class='ident'>b</span>: <span class='ident'>b</span>, <span class='ident'>a</span>: <span class='number'>1.0</span> });
+    <span class='kw'>return</span> <span class='prelude-val'>Ok</span>(<span class='ident'>Color</span> {
+        <span class='ident'>r</span>: <span class='ident'>r</span>,
+        <span class='ident'>g</span>: <span class='ident'>g</span>,
+        <span class='ident'>b</span>: <span class='ident'>b</span>,
+        <span class='ident'>a</span>: <span class='number'>1.0</span>,
+    });
 }
 
-<span class='comment'>//float or percentage.</span>
+<span class='comment'>// float or percentage.</span>
 <span class='kw'>fn</span> <span class='ident'>parse_css_float</span>(<span class='ident'>fv_str</span>: <span class='kw-2'>&amp;</span><span class='ident'>str</span>) <span class='op'>-&gt;</span> <span class='prelude-ty'>Result</span><span class='op'>&lt;</span><span class='ident'>f32</span>, <span class='ident'>num</span>::<span class='ident'>ParseFloatError</span><span class='op'>&gt;</span> {
 
-	<span class='kw'>let</span> <span class='ident'>fv</span>: <span class='ident'>f32</span>; 
+    <span class='kw'>let</span> <span class='ident'>fv</span>: <span class='ident'>f32</span>;
 
-	<span class='kw'>if</span> <span class='ident'>fv_str</span>.<span class='ident'>ends_with</span>(<span class='string'>&quot;%&quot;</span>) {
-		<span class='kw'>let</span> <span class='kw-2'>mut</span> <span class='ident'>percentage_string</span> <span class='op'>=</span> <span class='ident'>fv_str</span>.<span class='ident'>to_string</span>();
-		<span class='ident'>percentage_string</span>.<span class='ident'>pop</span>();
-		<span class='ident'>fv</span> <span class='op'>=</span> <span class='macro'>try</span><span class='macro'>!</span>(<span class='ident'>f32</span>::<span class='ident'>from_str</span>(<span class='kw-2'>&amp;</span><span class='ident'>percentage_string</span>));
-		<span class='kw'>return</span> <span class='prelude-val'>Ok</span>(<span class='ident'>clamp_css_float</span>(<span class='ident'>fv</span> <span class='op'>/</span> <span class='number'>100.0</span>));
-	}
+    <span class='kw'>if</span> <span class='ident'>fv_str</span>.<span class='ident'>ends_with</span>(<span class='string'>&quot;%&quot;</span>) {
+        <span class='kw'>let</span> <span class='kw-2'>mut</span> <span class='ident'>percentage_string</span> <span class='op'>=</span> <span class='ident'>fv_str</span>.<span class='ident'>to_string</span>();
+        <span class='ident'>percentage_string</span>.<span class='ident'>pop</span>();
+        <span class='ident'>fv</span> <span class='op'>=</span> <span class='macro'>try</span><span class='macro'>!</span>(<span class='ident'>f32</span>::<span class='ident'>from_str</span>(<span class='kw-2'>&amp;</span><span class='ident'>percentage_string</span>));
+        <span class='kw'>return</span> <span class='prelude-val'>Ok</span>(<span class='ident'>clamp_css_float</span>(<span class='ident'>fv</span> <span class='op'>/</span> <span class='number'>100.0</span>));
+    }
 
-	<span class='ident'>fv</span> <span class='op'>=</span> <span class='macro'>try</span><span class='macro'>!</span>(<span class='ident'>f32</span>::<span class='ident'>from_str</span>(<span class='ident'>fv_str</span>));
-	<span class='kw'>return</span> <span class='prelude-val'>Ok</span>(<span class='ident'>clamp_css_float</span>(<span class='ident'>fv</span>));
+    <span class='ident'>fv</span> <span class='op'>=</span> <span class='macro'>try</span><span class='macro'>!</span>(<span class='ident'>f32</span>::<span class='ident'>from_str</span>(<span class='ident'>fv_str</span>));
+    <span class='kw'>return</span> <span class='prelude-val'>Ok</span>(<span class='ident'>clamp_css_float</span>(<span class='ident'>fv</span>));
 }
 
 <span class='comment'>// int or percentage.</span>
 <span class='kw'>fn</span> <span class='ident'>parse_css_int</span>(<span class='ident'>iv_or_percentage_str</span>: <span class='kw-2'>&amp;</span><span class='ident'>str</span>) <span class='op'>-&gt;</span> <span class='prelude-ty'>Result</span><span class='op'>&lt;</span><span class='ident'>u8</span>, <span class='ident'>ColorParseError</span><span class='op'>&gt;</span> {
-	<span class='kw'>if</span> <span class='ident'>iv_or_percentage_str</span>.<span class='ident'>ends_with</span>(<span class='string'>&quot;%&quot;</span>) {
+    <span class='kw'>if</span> <span class='ident'>iv_or_percentage_str</span>.<span class='ident'>ends_with</span>(<span class='string'>&quot;%&quot;</span>) {
 
-		<span class='kw'>let</span> <span class='kw-2'>mut</span> <span class='ident'>percentage_string</span> <span class='op'>=</span> <span class='ident'>iv_or_percentage_str</span>.<span class='ident'>to_string</span>();
-		<span class='ident'>percentage_string</span>.<span class='ident'>pop</span>();
-		<span class='kw'>let</span> <span class='ident'>fv</span> <span class='op'>=</span> <span class='macro'>try</span><span class='macro'>!</span>(<span class='ident'>f32</span>::<span class='ident'>from_str</span>(<span class='kw-2'>&amp;</span><span class='ident'>percentage_string</span>));
-		<span class='comment'>// Seems to be what Chrome does (round vs truncation).</span>
-		<span class='kw'>return</span> <span class='prelude-val'>Ok</span>(<span class='ident'>clamp_css_byte_from_float</span>(<span class='ident'>fv</span> <span class='op'>/</span> <span class='number'>100.0</span> <span class='op'>*</span> <span class='number'>255.0</span>));
-	}
+        <span class='kw'>let</span> <span class='kw-2'>mut</span> <span class='ident'>percentage_string</span> <span class='op'>=</span> <span class='ident'>iv_or_percentage_str</span>.<span class='ident'>to_string</span>();
+        <span class='ident'>percentage_string</span>.<span class='ident'>pop</span>();
+        <span class='kw'>let</span> <span class='ident'>fv</span> <span class='op'>=</span> <span class='macro'>try</span><span class='macro'>!</span>(<span class='ident'>f32</span>::<span class='ident'>from_str</span>(<span class='kw-2'>&amp;</span><span class='ident'>percentage_string</span>));
+        <span class='comment'>// Seems to be what Chrome does (round vs truncation).</span>
+        <span class='kw'>return</span> <span class='prelude-val'>Ok</span>(<span class='ident'>clamp_css_byte_from_float</span>(<span class='ident'>fv</span> <span class='op'>/</span> <span class='number'>100.0</span> <span class='op'>*</span> <span class='number'>255.0</span>));
+    }
 
-	<span class='kw'>let</span> <span class='ident'>iv</span> <span class='op'>=</span> <span class='macro'>try</span><span class='macro'>!</span>(<span class='ident'>u32</span>::<span class='ident'>from_str</span>(<span class='ident'>iv_or_percentage_str</span>));
+    <span class='kw'>let</span> <span class='ident'>iv</span> <span class='op'>=</span> <span class='macro'>try</span><span class='macro'>!</span>(<span class='ident'>u32</span>::<span class='ident'>from_str</span>(<span class='ident'>iv_or_percentage_str</span>));
 
-	<span class='kw'>return</span> <span class='prelude-val'>Ok</span>(<span class='ident'>clamp_css_byte</span>(<span class='ident'>iv</span>));
+    <span class='kw'>return</span> <span class='prelude-val'>Ok</span>(<span class='ident'>clamp_css_byte</span>(<span class='ident'>iv</span>));
 }
 
 <span class='comment'>// Clamp to float 0.0 .. 1.0.</span>
-<span class='kw'>fn</span> <span class='ident'>clamp_css_float</span>(<span class='ident'>fv</span>: <span class='ident'>f32</span>) <span class='op'>-&gt;</span> <span class='ident'>f32</span> {  
-	<span class='comment'>//return fv &lt; 0 ? 0 : fv &gt; 1 ? 1 : fv;</span>
-	<span class='kw'>if</span> <span class='ident'>fv</span> <span class='op'>&lt;</span> <span class='number'>0.0</span> {
-		<span class='number'>0.0</span> 
-	} <span class='kw'>else</span> <span class='kw'>if</span> <span class='ident'>fv</span> <span class='op'>&gt;</span> <span class='number'>1.0</span> {
-		<span class='number'>1.0</span>
-	}
-	<span class='kw'>else</span> {
-	    <span class='ident'>fv</span>
-	}
+<span class='kw'>fn</span> <span class='ident'>clamp_css_float</span>(<span class='ident'>fv</span>: <span class='ident'>f32</span>) <span class='op'>-&gt;</span> <span class='ident'>f32</span> {
+    <span class='comment'>// return fv &lt; 0 ? 0 : fv &gt; 1 ? 1 : fv;</span>
+    <span class='kw'>if</span> <span class='ident'>fv</span> <span class='op'>&lt;</span> <span class='number'>0.0</span> {
+        <span class='number'>0.0</span>
+    } <span class='kw'>else</span> <span class='kw'>if</span> <span class='ident'>fv</span> <span class='op'>&gt;</span> <span class='number'>1.0</span> {
+        <span class='number'>1.0</span>
+    } <span class='kw'>else</span> {
+        <span class='ident'>fv</span>
+    }
 }
 
-<span class='kw'>fn</span> <span class='ident'>clamp_css_byte_from_float</span>(<span class='kw-2'>mut</span> <span class='ident'>fv</span>: <span class='ident'>f32</span>) <span class='op'>-&gt;</span> <span class='ident'>u8</span> {  <span class='comment'>// Clamp to integer 0 .. 255.</span>
-	<span class='comment'>// Seems to be what Chrome does (vs truncation).</span>
-  	<span class='ident'>fv</span> <span class='op'>=</span> <span class='ident'>fv</span>.<span class='ident'>round</span>();  
+<span class='kw'>fn</span> <span class='ident'>clamp_css_byte_from_float</span>(<span class='kw-2'>mut</span> <span class='ident'>fv</span>: <span class='ident'>f32</span>) <span class='op'>-&gt;</span> <span class='ident'>u8</span> {
+    <span class='comment'>// Clamp to integer 0 .. 255.</span>
+    <span class='comment'>// Seems to be what Chrome does (vs truncation).</span>
+    <span class='ident'>fv</span> <span class='op'>=</span> <span class='ident'>fv</span>.<span class='ident'>round</span>();
 
-  	<span class='comment'>// return iv &lt; 0 ? 0 : iv &gt; 255 ? 255 : iv;</span>
-	<span class='kw'>if</span> <span class='ident'>fv</span> <span class='op'>&lt;</span> <span class='number'>0.0</span> {
-		<span class='number'>0</span> 
-	} <span class='kw'>else</span> <span class='kw'>if</span> <span class='ident'>fv</span> <span class='op'>&gt;</span> <span class='number'>255.0</span> {
-		<span class='number'>255</span>
-	}
-	<span class='kw'>else</span> {
-	    <span class='ident'>fv</span> <span class='kw'>as</span> <span class='ident'>u8</span>
-	}
+    <span class='comment'>// return iv &lt; 0 ? 0 : iv &gt; 255 ? 255 : iv;</span>
+    <span class='kw'>if</span> <span class='ident'>fv</span> <span class='op'>&lt;</span> <span class='number'>0.0</span> {
+        <span class='number'>0</span>
+    } <span class='kw'>else</span> <span class='kw'>if</span> <span class='ident'>fv</span> <span class='op'>&gt;</span> <span class='number'>255.0</span> {
+        <span class='number'>255</span>
+    } <span class='kw'>else</span> {
+        <span class='ident'>fv</span> <span class='kw'>as</span> <span class='ident'>u8</span>
+    }
 }
 
-<span class='kw'>fn</span> <span class='ident'>clamp_css_byte</span>(<span class='ident'>iv</span>: <span class='ident'>u32</span>) <span class='op'>-&gt;</span> <span class='ident'>u8</span> {  <span class='comment'>// Clamp to integer 0 .. 255.</span>
-  	<span class='comment'>// return iv &lt; 0 ? 0 : iv &gt; 255 ? 255 : iv;</span>
-  	<span class='kw'>if</span> <span class='ident'>iv</span> <span class='op'>&gt;</span> <span class='number'>255</span> {
-		<span class='number'>255</span>
-	}
-	<span class='kw'>else</span> {
-	    <span class='ident'>iv</span> <span class='kw'>as</span> <span class='ident'>u8</span>
-	}
+<span class='kw'>fn</span> <span class='ident'>clamp_css_byte</span>(<span class='ident'>iv</span>: <span class='ident'>u32</span>) <span class='op'>-&gt;</span> <span class='ident'>u8</span> {
+    <span class='comment'>// Clamp to integer 0 .. 255.</span>
+    <span class='comment'>// return iv &lt; 0 ? 0 : iv &gt; 255 ? 255 : iv;</span>
+    <span class='kw'>if</span> <span class='ident'>iv</span> <span class='op'>&gt;</span> <span class='number'>255</span> { <span class='number'>255</span> } <span class='kw'>else</span> { <span class='ident'>iv</span> <span class='kw'>as</span> <span class='ident'>u8</span> }
 }
 
 <span class='kw'>fn</span> <span class='ident'>css_hue_to_rgb</span>(<span class='ident'>m1</span>: <span class='ident'>f32</span>, <span class='ident'>m2</span>: <span class='ident'>f32</span>, <span class='kw-2'>mut</span> <span class='ident'>h</span>: <span class='ident'>f32</span>) <span class='op'>-&gt;</span> <span class='ident'>f32</span> {
-	<span class='kw'>if</span> <span class='ident'>h</span> <span class='op'>&lt;</span> <span class='number'>0.0</span> {
-		<span class='ident'>h</span><span class='op'>+=</span><span class='number'>1.0</span>;
-	} 
-	<span class='kw'>else</span> <span class='kw'>if</span> <span class='ident'>h</span> <span class='op'>&gt;</span> <span class='number'>1.0</span> {
-		<span class='ident'>h</span><span class='op'>-=</span> <span class='number'>1.0</span>;
-	}
+    <span class='kw'>if</span> <span class='ident'>h</span> <span class='op'>&lt;</span> <span class='number'>0.0</span> {
+        <span class='ident'>h</span> <span class='op'>+=</span> <span class='number'>1.0</span>;
+    } <span class='kw'>else</span> <span class='kw'>if</span> <span class='ident'>h</span> <span class='op'>&gt;</span> <span class='number'>1.0</span> {
+        <span class='ident'>h</span> <span class='op'>-=</span> <span class='number'>1.0</span>;
+    }
 
-	<span class='kw'>if</span> <span class='ident'>h</span> <span class='op'>*</span> <span class='number'>6.0</span> <span class='op'>&lt;</span> <span class='number'>1.0</span> {
-		<span class='kw'>return</span> <span class='ident'>m1</span> <span class='op'>+</span> (<span class='ident'>m2</span> <span class='op'>-</span> <span class='ident'>m1</span>) <span class='op'>*</span> <span class='ident'>h</span> <span class='op'>*</span> <span class='number'>6.0</span>;
-	}
-	<span class='kw'>if</span> <span class='ident'>h</span> <span class='op'>*</span> <span class='number'>2.0</span> <span class='op'>&lt;</span> <span class='number'>1.0</span> {
-		<span class='kw'>return</span> <span class='ident'>m2</span>;
-	}
-	<span class='kw'>if</span> <span class='ident'>h</span> <span class='op'>*</span> <span class='number'>3.0</span> <span class='op'>&lt;</span> <span class='number'>2.0</span> {
-		<span class='kw'>return</span> <span class='ident'>m1</span> <span class='op'>+</span> (<span class='ident'>m2</span> <span class='op'>-</span> <span class='ident'>m1</span>) <span class='op'>*</span> (<span class='number'>2.0</span><span class='op'>/</span><span class='number'>3.0</span> <span class='op'>-</span> <span class='ident'>h</span>) <span class='op'>*</span> <span class='number'>6.0</span>;
-	}
+    <span class='kw'>if</span> <span class='ident'>h</span> <span class='op'>*</span> <span class='number'>6.0</span> <span class='op'>&lt;</span> <span class='number'>1.0</span> {
+        <span class='kw'>return</span> <span class='ident'>m1</span> <span class='op'>+</span> (<span class='ident'>m2</span> <span class='op'>-</span> <span class='ident'>m1</span>) <span class='op'>*</span> <span class='ident'>h</span> <span class='op'>*</span> <span class='number'>6.0</span>;
+    }
+    <span class='kw'>if</span> <span class='ident'>h</span> <span class='op'>*</span> <span class='number'>2.0</span> <span class='op'>&lt;</span> <span class='number'>1.0</span> {
+        <span class='kw'>return</span> <span class='ident'>m2</span>;
+    }
+    <span class='kw'>if</span> <span class='ident'>h</span> <span class='op'>*</span> <span class='number'>3.0</span> <span class='op'>&lt;</span> <span class='number'>2.0</span> {
+        <span class='kw'>return</span> <span class='ident'>m1</span> <span class='op'>+</span> (<span class='ident'>m2</span> <span class='op'>-</span> <span class='ident'>m1</span>) <span class='op'>*</span> (<span class='number'>2.0</span> <span class='op'>/</span> <span class='number'>3.0</span> <span class='op'>-</span> <span class='ident'>h</span>) <span class='op'>*</span> <span class='number'>6.0</span>;
+    }
 
-	<span class='kw'>return</span> <span class='ident'>m1</span>;
-}</pre>
+    <span class='kw'>return</span> <span class='ident'>m1</span>;
+}
+</pre>
 </section>
     <section id='search' class="content hidden"></section>
 
