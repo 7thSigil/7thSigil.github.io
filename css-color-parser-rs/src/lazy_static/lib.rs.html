@@ -9,6 +9,7 @@
 
     <title>lib.rs.html -- source</title>
 
+    <link rel="stylesheet" type="text/css" href="../../normalize.css">
     <link rel="stylesheet" type="text/css" href="../../rustdoc.css">
     <link rel="stylesheet" type="text/css" href="../../main.css">
     
@@ -16,7 +17,7 @@
     
     
 </head>
-<body class="rustdoc">
+<body class="rustdoc source">
     <!--[if lte IE 8]>
     <div class="warning">
         This old browser is unsupported and will most likely display funky
@@ -42,7 +43,7 @@
         </form>
     </nav>
 
-    <section id='main' class="content source"><pre class="line-numbers"><span id="1">  1</span>
+    <section id='main' class="content"><pre class="line-numbers"><span id="1">  1</span>
 <span id="2">  2</span>
 <span id="3">  3</span>
 <span id="4">  4</span>
@@ -199,8 +200,8 @@
 <span id="155">155</span>
 <span id="156">156</span>
 <span id="157">157</span>
-</pre><pre class='rust '>
-<span class='doccomment'>/*!
+</pre><pre class="rust ">
+<span class="doccomment">/*!
 A macro for declaring lazily evaluated statics.
 
 Using this macro, it is possible to have `static`s that require code to be
@@ -270,92 +271,92 @@ The `Deref` implementation uses a hidden static variable that is guarded by a at
 
 */</span>
 
-<span class='attribute'>#<span class='op'>!</span>[<span class='ident'>cfg_attr</span>(<span class='ident'>feature</span><span class='op'>=</span><span class='string'>&quot;nightly&quot;</span>, <span class='ident'>feature</span>(<span class='ident'>const_fn</span>, <span class='ident'>core_intrinsics</span>))]</span>
-<span class='attribute'>#<span class='op'>!</span>[<span class='ident'>crate_type</span> <span class='op'>=</span> <span class='string'>&quot;dylib&quot;</span>]</span>
+<span class="attribute">#<span class="op">!</span>[<span class="ident">cfg_attr</span>(<span class="ident">feature</span><span class="op">=</span><span class="string">&quot;nightly&quot;</span>, <span class="ident">feature</span>(<span class="ident">const_fn</span>, <span class="ident">core_intrinsics</span>))]</span>
+<span class="attribute">#<span class="op">!</span>[<span class="ident">crate_type</span> <span class="op">=</span> <span class="string">&quot;dylib&quot;</span>]</span>
 
-<span class='attribute'>#[<span class='ident'>macro_export</span>]</span>
-<span class='macro'>macro_rules</span><span class='macro'>!</span> <span class='ident'>lazy_static</span> {
-    ($(<span class='attribute'>#[<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>attr</span>:<span class='ident'>meta</span>]</span>)<span class='op'>*</span> <span class='kw'>static</span> <span class='kw-2'>ref</span> <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>N</span>:<span class='ident'>ident</span> : <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>T</span>:<span class='ident'>ty</span> <span class='op'>=</span> <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>e</span>:<span class='ident'>expr</span>; $(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>t</span>:<span class='ident'>tt</span>)<span class='op'>*</span>) <span class='op'>=&gt;</span> {
-        <span class='macro'>lazy_static</span><span class='macro'>!</span>(<span class='ident'>PRIV</span>, $(<span class='attribute'>#[<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>attr</span>]</span>)<span class='op'>*</span> <span class='kw'>static</span> <span class='kw-2'>ref</span> <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>N</span> : <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>T</span> <span class='op'>=</span> <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>e</span>; $(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>t</span>)<span class='op'>*</span>);
+<span class="attribute">#[<span class="ident">macro_export</span>]</span>
+<span class="macro">macro_rules</span><span class="macro">!</span> <span class="ident">lazy_static</span> {
+    ($(<span class="attribute">#[<span class="macro-nonterminal">$</span><span class="macro-nonterminal">attr</span>:<span class="ident">meta</span>]</span>)<span class="op">*</span> <span class="kw">static</span> <span class="kw-2">ref</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">N</span>:<span class="ident">ident</span> : <span class="macro-nonterminal">$</span><span class="macro-nonterminal">T</span>:<span class="ident">ty</span> <span class="op">=</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">e</span>:<span class="ident">expr</span>; $(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">t</span>:<span class="ident">tt</span>)<span class="kw-2">*</span>) <span class="op">=&gt;</span> {
+        <span class="macro">lazy_static</span><span class="macro">!</span>(<span class="ident">PRIV</span>, $(<span class="attribute">#[<span class="macro-nonterminal">$</span><span class="macro-nonterminal">attr</span>]</span>)<span class="op">*</span> <span class="kw">static</span> <span class="kw-2">ref</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">N</span> : <span class="macro-nonterminal">$</span><span class="macro-nonterminal">T</span> <span class="op">=</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">e</span>; $(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">t</span>)<span class="kw-2">*</span>);
     };
-    ($(<span class='attribute'>#[<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>attr</span>:<span class='ident'>meta</span>]</span>)<span class='op'>*</span> <span class='kw'>pub</span> <span class='kw'>static</span> <span class='kw-2'>ref</span> <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>N</span>:<span class='ident'>ident</span> : <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>T</span>:<span class='ident'>ty</span> <span class='op'>=</span> <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>e</span>:<span class='ident'>expr</span>; $(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>t</span>:<span class='ident'>tt</span>)<span class='op'>*</span>) <span class='op'>=&gt;</span> {
-        <span class='macro'>lazy_static</span><span class='macro'>!</span>(<span class='ident'>PUB</span>, $(<span class='attribute'>#[<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>attr</span>]</span>)<span class='op'>*</span> <span class='kw'>static</span> <span class='kw-2'>ref</span> <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>N</span> : <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>T</span> <span class='op'>=</span> <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>e</span>; $(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>t</span>)<span class='op'>*</span>);
+    ($(<span class="attribute">#[<span class="macro-nonterminal">$</span><span class="macro-nonterminal">attr</span>:<span class="ident">meta</span>]</span>)<span class="op">*</span> <span class="kw">pub</span> <span class="kw">static</span> <span class="kw-2">ref</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">N</span>:<span class="ident">ident</span> : <span class="macro-nonterminal">$</span><span class="macro-nonterminal">T</span>:<span class="ident">ty</span> <span class="op">=</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">e</span>:<span class="ident">expr</span>; $(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">t</span>:<span class="ident">tt</span>)<span class="kw-2">*</span>) <span class="op">=&gt;</span> {
+        <span class="macro">lazy_static</span><span class="macro">!</span>(<span class="ident">PUB</span>, $(<span class="attribute">#[<span class="macro-nonterminal">$</span><span class="macro-nonterminal">attr</span>]</span>)<span class="op">*</span> <span class="kw">static</span> <span class="kw-2">ref</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">N</span> : <span class="macro-nonterminal">$</span><span class="macro-nonterminal">T</span> <span class="op">=</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">e</span>; $(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">t</span>)<span class="kw-2">*</span>);
     };
-    (<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>VIS</span>:<span class='ident'>ident</span>, $(<span class='attribute'>#[<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>attr</span>:<span class='ident'>meta</span>]</span>)<span class='op'>*</span> <span class='kw'>static</span> <span class='kw-2'>ref</span> <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>N</span>:<span class='ident'>ident</span> : <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>T</span>:<span class='ident'>ty</span> <span class='op'>=</span> <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>e</span>:<span class='ident'>expr</span>; $(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>t</span>:<span class='ident'>tt</span>)<span class='op'>*</span>) <span class='op'>=&gt;</span> {
-        <span class='macro'>lazy_static</span><span class='macro'>!</span>(<span class='ident'>MAKE</span> <span class='ident'>TY</span>, <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>VIS</span>, $(<span class='attribute'>#[<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>attr</span>]</span>)<span class='op'>*</span>, <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>N</span>);
-        <span class='kw'>impl</span> ::<span class='ident'>std</span>::<span class='ident'>ops</span>::<span class='ident'>Deref</span> <span class='kw'>for</span> <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>N</span> {
-            <span class='kw'>type</span> <span class='ident'>Target</span> <span class='op'>=</span> <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>T</span>;
-            <span class='kw'>fn</span> <span class='ident'>deref</span><span class='op'>&lt;</span><span class='lifetime'>&#39;a</span><span class='op'>&gt;</span>(<span class='kw-2'>&amp;</span><span class='lifetime'>&#39;a</span> <span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='kw-2'>&amp;</span><span class='lifetime'>&#39;a</span> <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>T</span> {
-                <span class='attribute'>#[<span class='ident'>inline</span>(<span class='ident'>always</span>)]</span>
-                <span class='kw'>fn</span> <span class='ident'>__static_ref_initialize</span>() <span class='op'>-&gt;</span> <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>T</span> { <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>e</span> }
+    (<span class="macro-nonterminal">$</span><span class="macro-nonterminal">VIS</span>:<span class="ident">ident</span>, $(<span class="attribute">#[<span class="macro-nonterminal">$</span><span class="macro-nonterminal">attr</span>:<span class="ident">meta</span>]</span>)<span class="op">*</span> <span class="kw">static</span> <span class="kw-2">ref</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">N</span>:<span class="ident">ident</span> : <span class="macro-nonterminal">$</span><span class="macro-nonterminal">T</span>:<span class="ident">ty</span> <span class="op">=</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">e</span>:<span class="ident">expr</span>; $(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">t</span>:<span class="ident">tt</span>)<span class="kw-2">*</span>) <span class="op">=&gt;</span> {
+        <span class="macro">lazy_static</span><span class="macro">!</span>(<span class="ident">MAKE</span> <span class="ident">TY</span>, <span class="macro-nonterminal">$</span><span class="macro-nonterminal">VIS</span>, $(<span class="attribute">#[<span class="macro-nonterminal">$</span><span class="macro-nonterminal">attr</span>]</span>)<span class="kw-2">*</span>, <span class="macro-nonterminal">$</span><span class="macro-nonterminal">N</span>);
+        <span class="kw">impl</span> ::<span class="ident">std</span>::<span class="ident">ops</span>::<span class="ident">Deref</span> <span class="kw">for</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">N</span> {
+            <span class="kw">type</span> <span class="ident">Target</span> <span class="op">=</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">T</span>;
+            <span class="kw">fn</span> <span class="ident">deref</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="self">self</span>) <span class="op">-&gt;</span> <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">T</span> {
+                <span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>
+                <span class="kw">fn</span> <span class="ident">__static_ref_initialize</span>() <span class="op">-&gt;</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">T</span> { <span class="macro-nonterminal">$</span><span class="macro-nonterminal">e</span> }
 
-                <span class='kw'>unsafe</span> {
-                    <span class='kw'>use</span> <span class='ident'>std</span>::<span class='ident'>sync</span>::{<span class='ident'>Once</span>, <span class='ident'>ONCE_INIT</span>};
+                <span class="kw">unsafe</span> {
+                    <span class="kw">use</span> <span class="ident">std</span>::<span class="ident">sync</span>::{<span class="ident">Once</span>, <span class="ident">ONCE_INIT</span>};
 
-                    <span class='attribute'>#[<span class='ident'>inline</span>(<span class='ident'>always</span>)]</span>
-                    <span class='kw'>fn</span> <span class='ident'>require_sync</span><span class='op'>&lt;</span><span class='ident'>T</span>: <span class='ident'>Sync</span><span class='op'>&gt;</span>(_: <span class='kw-2'>&amp;</span><span class='ident'>T</span>) { }
+                    <span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>
+                    <span class="kw">fn</span> <span class="ident">require_sync</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">Sync</span><span class="op">&gt;</span>(_: <span class="kw-2">&amp;</span><span class="ident">T</span>) { }
 
-                    <span class='attribute'>#[<span class='ident'>inline</span>(<span class='ident'>always</span>)]</span>
-                    <span class='attribute'>#[<span class='ident'>cfg</span>(<span class='ident'>feature</span><span class='op'>=</span><span class='string'>&quot;nightly&quot;</span>)]</span>
-                    <span class='kw'>unsafe</span> <span class='kw'>fn</span> <span class='ident'>__stability</span>() <span class='op'>-&gt;</span> <span class='kw-2'>&amp;</span><span class='lifetime'>&#39;static</span> <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>T</span> {
-                        <span class='kw'>use</span> <span class='ident'>std</span>::<span class='ident'>cell</span>::<span class='ident'>UnsafeCell</span>;
+                    <span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>
+                    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span><span class="op">=</span><span class="string">&quot;nightly&quot;</span>)]</span>
+                    <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">__stability</span>() <span class="op">-&gt;</span> <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">T</span> {
+                        <span class="kw">use</span> <span class="ident">std</span>::<span class="ident">cell</span>::<span class="ident">UnsafeCell</span>;
 
-                        <span class='kw'>struct</span> <span class='ident'>SyncCell</span>(<span class='ident'>UnsafeCell</span><span class='op'>&lt;</span><span class='prelude-ty'>Option</span><span class='op'>&lt;</span><span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>T</span><span class='op'>&gt;&gt;</span>);
-                        <span class='kw'>unsafe</span> <span class='kw'>impl</span> <span class='ident'>Sync</span> <span class='kw'>for</span> <span class='ident'>SyncCell</span> {}
+                        <span class="kw">struct</span> <span class="ident">SyncCell</span>(<span class="ident">UnsafeCell</span><span class="op">&lt;</span><span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="macro-nonterminal">$</span><span class="macro-nonterminal">T</span><span class="op">&gt;&gt;</span>);
+                        <span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">Sync</span> <span class="kw">for</span> <span class="ident">SyncCell</span> {}
 
-                        <span class='kw'>static</span> <span class='ident'>DATA</span>: <span class='ident'>SyncCell</span> <span class='op'>=</span> <span class='ident'>SyncCell</span>(<span class='ident'>UnsafeCell</span>::<span class='ident'>new</span>(<span class='prelude-val'>None</span>));
-                        <span class='kw'>static</span> <span class='ident'>ONCE</span>: <span class='ident'>Once</span> <span class='op'>=</span> <span class='ident'>ONCE_INIT</span>;
-                        <span class='ident'>ONCE</span>.<span class='ident'>call_once</span>(<span class='op'>||</span> {
-                            <span class='op'>*</span><span class='ident'>DATA</span>.<span class='number'>0</span>.<span class='ident'>get</span>() <span class='op'>=</span> <span class='prelude-val'>Some</span>(<span class='ident'>__static_ref_initialize</span>());
+                        <span class="kw">static</span> <span class="ident">DATA</span>: <span class="ident">SyncCell</span> <span class="op">=</span> <span class="ident">SyncCell</span>(<span class="ident">UnsafeCell</span>::<span class="ident">new</span>(<span class="prelude-val">None</span>));
+                        <span class="kw">static</span> <span class="ident">ONCE</span>: <span class="ident">Once</span> <span class="op">=</span> <span class="ident">ONCE_INIT</span>;
+                        <span class="ident">ONCE</span>.<span class="ident">call_once</span>(<span class="op">||</span> {
+                            <span class="kw-2">*</span><span class="ident">DATA</span>.<span class="number">0</span>.<span class="ident">get</span>() <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">__static_ref_initialize</span>());
                         });
-                        <span class='kw'>match</span> <span class='op'>*</span><span class='ident'>DATA</span>.<span class='number'>0</span>.<span class='ident'>get</span>() {
-                            <span class='prelude-val'>Some</span>(<span class='kw-2'>ref</span> <span class='ident'>x</span>) <span class='op'>=&gt;</span> <span class='ident'>x</span>,
-                            <span class='prelude-val'>None</span> <span class='op'>=&gt;</span> ::<span class='ident'>std</span>::<span class='ident'>intrinsics</span>::<span class='ident'>unreachable</span>(),
+                        <span class="kw">match</span> <span class="kw-2">*</span><span class="ident">DATA</span>.<span class="number">0</span>.<span class="ident">get</span>() {
+                            <span class="prelude-val">Some</span>(<span class="kw-2">ref</span> <span class="ident">x</span>) <span class="op">=&gt;</span> <span class="ident">x</span>,
+                            <span class="prelude-val">None</span> <span class="op">=&gt;</span> ::<span class="ident">std</span>::<span class="ident">intrinsics</span>::<span class="ident">unreachable</span>(),
                         }
                     }
 
-                    <span class='attribute'>#[<span class='ident'>inline</span>(<span class='ident'>always</span>)]</span>
-                    <span class='attribute'>#[<span class='ident'>cfg</span>(<span class='ident'>not</span>(<span class='ident'>feature</span><span class='op'>=</span><span class='string'>&quot;nightly&quot;</span>))]</span>
-                    <span class='kw'>unsafe</span> <span class='kw'>fn</span> <span class='ident'>__stability</span>() <span class='op'>-&gt;</span> <span class='kw-2'>&amp;</span><span class='lifetime'>&#39;static</span> <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>T</span> {
-                        <span class='kw'>use</span> <span class='ident'>std</span>::<span class='ident'>mem</span>::<span class='ident'>transmute</span>;
-                        <span class='kw'>use</span> <span class='ident'>std</span>::<span class='ident'>boxed</span>::<span class='ident'>Box</span>;
+                    <span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>
+                    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">not</span>(<span class="ident">feature</span><span class="op">=</span><span class="string">&quot;nightly&quot;</span>))]</span>
+                    <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">__stability</span>() <span class="op">-&gt;</span> <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">T</span> {
+                        <span class="kw">use</span> <span class="ident">std</span>::<span class="ident">mem</span>::<span class="ident">transmute</span>;
+                        <span class="kw">use</span> <span class="ident">std</span>::<span class="ident">boxed</span>::<span class="ident">Box</span>;
 
-                        <span class='kw'>static</span> <span class='kw-2'>mut</span> <span class='ident'>DATA</span>: <span class='op'>*</span><span class='kw'>const</span> <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>T</span> <span class='op'>=</span> <span class='number'>0</span> <span class='kw'>as</span> <span class='op'>*</span><span class='kw'>const</span> <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>T</span>;
-                        <span class='kw'>static</span> <span class='kw-2'>mut</span> <span class='ident'>ONCE</span>: <span class='ident'>Once</span> <span class='op'>=</span> <span class='ident'>ONCE_INIT</span>;
-                        <span class='ident'>ONCE</span>.<span class='ident'>call_once</span>(<span class='op'>||</span> {
-                            <span class='ident'>DATA</span> <span class='op'>=</span> <span class='ident'>transmute</span>::<span class='op'>&lt;</span><span class='ident'>Box</span><span class='op'>&lt;</span><span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>T</span><span class='op'>&gt;</span>, <span class='op'>*</span><span class='kw'>const</span> <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>T</span><span class='op'>&gt;</span>(
-                                <span class='ident'>Box</span>::<span class='ident'>new</span>(<span class='ident'>__static_ref_initialize</span>()));
+                        <span class="kw">static</span> <span class="kw-2">mut</span> <span class="ident">DATA</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">T</span> <span class="op">=</span> <span class="number">0</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">T</span>;
+                        <span class="kw">static</span> <span class="kw-2">mut</span> <span class="ident">ONCE</span>: <span class="ident">Once</span> <span class="op">=</span> <span class="ident">ONCE_INIT</span>;
+                        <span class="ident">ONCE</span>.<span class="ident">call_once</span>(<span class="op">||</span> {
+                            <span class="ident">DATA</span> <span class="op">=</span> <span class="ident">transmute</span>::<span class="op">&lt;</span><span class="ident">Box</span><span class="op">&lt;</span><span class="macro-nonterminal">$</span><span class="macro-nonterminal">T</span><span class="op">&gt;</span>, <span class="kw-2">*</span><span class="kw">const</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">T</span><span class="op">&gt;</span>(
+                                <span class="ident">Box</span>::<span class="ident">new</span>(<span class="ident">__static_ref_initialize</span>()));
                         });
-                        <span class='kw-2'>&amp;</span><span class='op'>*</span><span class='ident'>DATA</span>
+                        <span class="kw-2">&amp;</span><span class="kw-2">*</span><span class="ident">DATA</span>
                     }
 
-                    <span class='kw'>let</span> <span class='ident'>static_ref</span> <span class='op'>=</span> <span class='ident'>__stability</span>();
-                    <span class='ident'>require_sync</span>(<span class='ident'>static_ref</span>);
-                    <span class='ident'>static_ref</span>
+                    <span class="kw">let</span> <span class="ident">static_ref</span> <span class="op">=</span> <span class="ident">__stability</span>();
+                    <span class="ident">require_sync</span>(<span class="ident">static_ref</span>);
+                    <span class="ident">static_ref</span>
                 }
             }
         }
-        <span class='macro'>lazy_static</span><span class='macro'>!</span>($(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>t</span>)<span class='op'>*</span>);
+        <span class="macro">lazy_static</span><span class="macro">!</span>($(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">t</span>)<span class="kw-2">*</span>);
     };
-    (<span class='ident'>MAKE</span> <span class='ident'>TY</span>, <span class='ident'>PUB</span>, $(<span class='attribute'>#[<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>attr</span>:<span class='ident'>meta</span>]</span>)<span class='op'>*</span>, <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>N</span>:<span class='ident'>ident</span>) <span class='op'>=&gt;</span> {
-        <span class='attribute'>#[<span class='ident'>allow</span>(<span class='ident'>missing_copy_implementations</span>)]</span>
-        <span class='attribute'>#[<span class='ident'>allow</span>(<span class='ident'>non_camel_case_types</span>)]</span>
-        <span class='attribute'>#[<span class='ident'>allow</span>(<span class='ident'>dead_code</span>)]</span>
-        $(<span class='attribute'>#[<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>attr</span>]</span>)<span class='op'>*</span>
-        <span class='kw'>pub</span> <span class='kw'>struct</span> <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>N</span> {<span class='ident'>__private_field</span>: ()}
-        <span class='attribute'>#[<span class='ident'>doc</span>(<span class='ident'>hidden</span>)]</span>
-        <span class='kw'>pub</span> <span class='kw'>static</span> <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>N</span>: <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>N</span> <span class='op'>=</span> <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>N</span> {<span class='ident'>__private_field</span>: ()};
+    (<span class="ident">MAKE</span> <span class="ident">TY</span>, <span class="ident">PUB</span>, $(<span class="attribute">#[<span class="macro-nonterminal">$</span><span class="macro-nonterminal">attr</span>:<span class="ident">meta</span>]</span>)<span class="kw-2">*</span>, <span class="macro-nonterminal">$</span><span class="macro-nonterminal">N</span>:<span class="ident">ident</span>) <span class="op">=&gt;</span> {
+        <span class="attribute">#[<span class="ident">allow</span>(<span class="ident">missing_copy_implementations</span>)]</span>
+        <span class="attribute">#[<span class="ident">allow</span>(<span class="ident">non_camel_case_types</span>)]</span>
+        <span class="attribute">#[<span class="ident">allow</span>(<span class="ident">dead_code</span>)]</span>
+        $(<span class="attribute">#[<span class="macro-nonterminal">$</span><span class="macro-nonterminal">attr</span>]</span>)<span class="op">*</span>
+        <span class="kw">pub</span> <span class="kw">struct</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">N</span> {<span class="ident">__private_field</span>: ()}
+        <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">hidden</span>)]</span>
+        <span class="kw">pub</span> <span class="kw">static</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">N</span>: <span class="macro-nonterminal">$</span><span class="macro-nonterminal">N</span> <span class="op">=</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">N</span> {<span class="ident">__private_field</span>: ()};
     };
-    (<span class='ident'>MAKE</span> <span class='ident'>TY</span>, <span class='ident'>PRIV</span>, $(<span class='attribute'>#[<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>attr</span>:<span class='ident'>meta</span>]</span>)<span class='op'>*</span>, <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>N</span>:<span class='ident'>ident</span>) <span class='op'>=&gt;</span> {
-        <span class='attribute'>#[<span class='ident'>allow</span>(<span class='ident'>missing_copy_implementations</span>)]</span>
-        <span class='attribute'>#[<span class='ident'>allow</span>(<span class='ident'>non_camel_case_types</span>)]</span>
-        <span class='attribute'>#[<span class='ident'>allow</span>(<span class='ident'>dead_code</span>)]</span>
-        $(<span class='attribute'>#[<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>attr</span>]</span>)<span class='op'>*</span>
-        <span class='kw'>struct</span> <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>N</span> {<span class='ident'>__private_field</span>: ()}
-        <span class='attribute'>#[<span class='ident'>doc</span>(<span class='ident'>hidden</span>)]</span>
-        <span class='kw'>static</span> <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>N</span>: <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>N</span> <span class='op'>=</span> <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>N</span> {<span class='ident'>__private_field</span>: ()};
+    (<span class="ident">MAKE</span> <span class="ident">TY</span>, <span class="ident">PRIV</span>, $(<span class="attribute">#[<span class="macro-nonterminal">$</span><span class="macro-nonterminal">attr</span>:<span class="ident">meta</span>]</span>)<span class="kw-2">*</span>, <span class="macro-nonterminal">$</span><span class="macro-nonterminal">N</span>:<span class="ident">ident</span>) <span class="op">=&gt;</span> {
+        <span class="attribute">#[<span class="ident">allow</span>(<span class="ident">missing_copy_implementations</span>)]</span>
+        <span class="attribute">#[<span class="ident">allow</span>(<span class="ident">non_camel_case_types</span>)]</span>
+        <span class="attribute">#[<span class="ident">allow</span>(<span class="ident">dead_code</span>)]</span>
+        $(<span class="attribute">#[<span class="macro-nonterminal">$</span><span class="macro-nonterminal">attr</span>]</span>)<span class="op">*</span>
+        <span class="kw">struct</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">N</span> {<span class="ident">__private_field</span>: ()}
+        <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">hidden</span>)]</span>
+        <span class="kw">static</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">N</span>: <span class="macro-nonterminal">$</span><span class="macro-nonterminal">N</span> <span class="op">=</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">N</span> {<span class="ident">__private_field</span>: ()};
     };
-    () <span class='op'>=&gt;</span> ()
+    () <span class="op">=&gt;</span> ()
 }
 </pre>
 </section>
@@ -414,11 +415,9 @@ The `Deref` implementation uses a hidden static variable that is guarded by a at
     <script>
         window.rootPath = "../../";
         window.currentCrate = "lazy_static";
-        window.playgroundUrl = "";
     </script>
     <script src="../../jquery.js"></script>
     <script src="../../main.js"></script>
-    
     <script defer src="../../search-index.js"></script>
 </body>
 </html>
